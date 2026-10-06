@@ -1,4 +1,6 @@
-# API contract — Week 3
+# API contract — Week 4
+
+Week 4 keeps the Week 3 domain schemas and routes. Production now binds before starting workers and closes MongoDB on fatal startup; Auth0 return paths reject external/malformed callback state. Deployment/cache/limit guarantees and local versus hosted evidence are documented in `DEPLOYMENT.md` and the Week 4 verification record.
 
 JSON uses the schemas in `packages/contracts/src/index.ts`. All domain IDs are UUIDs; positions only control ordering. API error responses have `{ "error": { "code": "…", "message": "…", "requestId": "…" } }`, and `X-Request-Id` is set. Never send owner/user IDs as input. Another owner's records return the same 404 as nonexistent records.
 

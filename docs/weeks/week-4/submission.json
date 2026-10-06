@@ -1,0 +1,87 @@
+{
+  "updatedOn": "2026-10-06",
+  "status": "incomplete_external_assets_and_live_verification",
+  "phaseBoundary": 4,
+  "featureFreezeRevision": "f82d5f8",
+  "verifiedSourceRevision": "1deabe64f052f5a729d75b241558a4eb5b3ddd5a",
+  "localVerification": {
+    "status": "PASS",
+    "automatedTests": 61,
+    "desktopMobileBrowserJourneys": 24,
+    "repeatedAccessibilityChecks": 12,
+    "wcagPageStateReportsWithZeroDetectedViolations": 16,
+    "productionClientViewports": 2,
+    "freshClone": "PASS: install, format, lint, types, build, tests, browsers, production smoke; cached tool binaries only",
+    "evidence": "docs/weeks/week-4/verification.md"
+  },
+  "urls": {
+    "repository": null,
+    "frontend": null,
+    "backend": null,
+    "demo": null,
+    "hostedCiRun": null
+  },
+  "assets": {
+    "readme": "README.md",
+    "architecture": "docs/ARCHITECTURE.md",
+    "deploymentRunbook": "docs/DEPLOYMENT.md",
+    "screenshots": "docs/weeks/week-4/screenshots",
+    "resumeBullets": "docs/submission/resume-bullets.md",
+    "fiveMinuteScriptAndShotList": "docs/submission/demo-script.md",
+    "demoRecording": "BLOCKED: final narrated recording remains pending; no configured live application or recording setup. Browser fixture traces/screenshots are not a completed demo."
+  },
+  "externalChecks": [
+    {
+      "check": "GitHub connection and hosted CI",
+      "status": "BLOCKED",
+      "reason": "No remote or repository/account access"
+    },
+    {
+      "check": "Public Vercel/Render deploy, update and rollback",
+      "status": "BLOCKED",
+      "reason": "No existing projects, account access or public URLs; no publication/account change performed"
+    },
+    {
+      "check": "Fresh-user Auth0 login/logout and two-account denial",
+      "status": "BLOCKED",
+      "reason": "No configured actual SPA/domain/audience/login connection"
+    },
+    {
+      "check": "Persistent hosted learning data/audio across restart",
+      "status": "BLOCKED",
+      "reason": "No application replica-set database or deployed backend; isolated persistence tests are separate"
+    },
+    {
+      "check": "Live Gemini technical/nontechnical/broad generation correctness",
+      "status": "BLOCKED",
+      "reason": "Missing GEMINI_API_KEY and GEMINI_TEXT_MODEL"
+    },
+    {
+      "check": "Live YouTube embeddability and unavailable video states",
+      "status": "BLOCKED",
+      "reason": "Missing YOUTUBE_API_KEY"
+    },
+    {
+      "check": "Live Hinglish meaning and speech pronunciation/playback",
+      "status": "BLOCKED",
+      "reason": "Missing GEMINI_API_KEY, GEMINI_TEXT_MODEL and GEMINI_TTS_MODEL; fixture tone playback does not verify pronunciation"
+    },
+    {
+      "check": "Final five-minute narrated recording and real asset URL",
+      "status": "BLOCKED",
+      "reason": "Actual configured application/live checks and narrated recording access absent; script/shot list delivered"
+    }
+  ],
+  "manualChecksNotRun": [
+    "Comprehensive NVDA/VoiceOver screen-reader audit",
+    "Real Safari/Firefox browser engines",
+    "Production load test and live-provider latency",
+    "Linux graceful shutdown on actual Render service"
+  ],
+  "recordingReadiness": {
+    "available": "Playwright browser/test capture",
+    "narratedRecorder": "ffmpeg and obs64 were not found on PATH; no narrated recording setup was available",
+    "applicationAccess": "No actual Auth0/live-provider/application deployment; final narrated demo remains pending"
+  },
+  "nextActions": "Privately configure exact variables and Auth0/Atlas settings in docs/DEPLOYMENT.md; authorize/connect intended GitHub/Vercel/Render projects, run and record hosted/live smoke, review pronunciation, then record and validate the demo. Replace null URLs only with real assets. Do not mark overall submission complete before these required checks/assets exist."
+}

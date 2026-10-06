@@ -1,0 +1,15 @@
+{
+  "url": "/sample/lessons/00000000-0000-4000-8000-000000000100",
+  "viewport": {
+    "width": 390,
+    "height": 664
+  },
+  "engine": {
+    "name": "axe-core",
+    "version": "4.13.0"
+  },
+  "status": "PASS",
+  "violations": [],
+  "incomplete": [],
+  "passedRules": 21
+}

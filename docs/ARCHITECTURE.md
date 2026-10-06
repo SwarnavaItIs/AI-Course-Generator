@@ -1,4 +1,4 @@
-# Architecture — Week 3
+# Architecture — Week 4, frozen feature set
 
 `client/` is React 19, TypeScript, React Router, Vite 8 and Tailwind 4. `server/` is Node 24, Express 5 and Mongoose 9. `packages/contracts/` contains Zod schemas/types and one authored sample. npm workspaces link a built shared package; build/dev commands compile it before client/server startup. Dependencies are pinned reproducibly by `package-lock.json`.
 
@@ -60,7 +60,11 @@ html2canvas captures each laid-out page, not a cropped tall screenshot. jsPDF ad
 
 ## Reliability and test boundary
 
-Startup validates environment names without printing values, connects to MongoDB with a selection deadline, checks transaction capability and initializes indexes. `/health` reports process liveness; `/ready` pings MongoDB. SIGTERM/SIGINT close HTTP and MongoDB, with a bounded shutdown deadline. CORS allows explicit origins, JSON is limited to 16 KiB, and API rate limits are 120/minute/IP. Render's single HTTPS proxy hop is trusted only in production. All errors include a server-generated request ID; internal exceptions and upstream bodies are not disclosed.
+Startup validates environment names without printing values, connects to MongoDB with a selection deadline, checks transaction capability and initializes indexes. HTTP must bind before workers start or startup is logged; fatal startup closes MongoDB and exits safely. `/health` is liveness; `/ready` pings MongoDB. SIGTERM/SIGINT close HTTP and abort/stop workers concurrently, then close MongoDB, with a ten-second deadline. CORS allows exact origins, JSON is limited to 16 KiB, and rate limits are 120/minute/IP per process. Multiple replicas require a shared limiter store. Render's single proxy hop is trusted only in production. Errors include server-generated request IDs; internal exceptions and upstream bodies are not disclosed.
+
+Auth0 return paths reject non-string values, scheme-relative URLs, backslashes and control characters, normalize through an internal origin, and fall back to `/library`. Week 4 tests the compiled production entrypoint with NODE_ENV=production: standalone database rejection, occupied port, readiness/public/401/CORS and actual process restart with persisted records. Windows restart does not verify Linux graceful signals. The built normal client uses the real Auth0 SDK with no fixture alias; local Vite-preview deep links pass separately from blocked Vercel-host smoke.
+
+Contrast fixes cover muted text, course/lesson metadata, outlines and quiz feedback. axe reports retain incomplete-rule targets for manual review; keyboard focus, skip link, dialog/Escape/mobile focus trap, reduced motion, narrow/tablet widths and actual 200% text sizing are checked. This is not a full screen-reader audit. Local HTTP/MongoDB fixture/cache timings and sample counts are in `docs/weeks/week-4/latency.json`; no live latency is inferred. `docs/DEPLOYMENT.md` covers production settings, updates, recovery and required hosted smoke. Features freeze at the Day 24 equivalent; Week 4 is the stopping boundary.
 
 `tests/fixtures/harness.ts` launches an isolated real MongoDB replica set and loopback JWKS service and signs temporary RSA fixture tokens. Production JWT middleware still verifies those tokens. The browser test config alone aliases the external Auth0 SDK to a test login facade; localhost-only fixture endpoints issue signed tokens and reset the real limiter's in-memory store between independent journeys. Production configs/entrypoints never import this code or expose reset routes; the 120/minute limit is unchanged and tested. These tests prove local authorization/persistence and UI behavior, **not actual Auth0 tenant login**.
 

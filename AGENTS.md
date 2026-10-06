@@ -2,6 +2,8 @@
 
 Work from this directory. Node 24, npm workspaces, React/Vite/Tailwind client, Express/Mongoose server, shared Zod contracts. Preserve the supplied specification and user changes. Stop at the user-selected week; currently Week 4, authorized only after the completed Week 3 handoff.
 
+Week 4 local implementation and available checks are complete; features are frozen at the Day 24 equivalent. Resume from `docs/weeks/week-4/handoff.md` for external setup/verification only. Overall submission is incomplete while actual hosted/provider/login/CI checks and the recorded demo/real URLs are absent. No next implementation phase is authorized.
+
 ## Commands
 
 - `npm ci` installs the lockfile. `npm run dev` builds/watches shared contracts and starts the client/API; configure both `.env` files first.

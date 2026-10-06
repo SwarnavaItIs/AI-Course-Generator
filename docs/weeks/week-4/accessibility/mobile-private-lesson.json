@@ -1,0 +1,15 @@
+{
+  "url": "/courses/335c23f6-a4e2-49e2-a278-f04b652b2c32/lessons/cf0bc766-6af3-4ea0-8902-f5998c131d41",
+  "viewport": {
+    "width": 390,
+    "height": 664
+  },
+  "engine": {
+    "name": "axe-core",
+    "version": "4.13.0"
+  },
+  "status": "PASS",
+  "violations": [],
+  "incomplete": [],
+  "passedRules": 26
+}

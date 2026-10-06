@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-06T08:33:41.027Z",
+  "scope": "Live adapter/structured-output validation for three topics. Does not verify saved production records or Auth0. Review curriculum, correctness, resources and quiz explanations manually before accepting quality.",
+  "model": null,
+  "results": [
+    {
+      "topic": "Python for beginners",
+      "status": "BLOCKED",
+      "missing": ["GEMINI_API_KEY", "GEMINI_TEXT_MODEL"]
+    },
+    {
+      "topic": "Persuasive writing",
+      "status": "BLOCKED",
+      "missing": ["GEMINI_API_KEY", "GEMINI_TEXT_MODEL"]
+    },
+    {
+      "topic": "World history",
+      "status": "BLOCKED",
+      "missing": ["GEMINI_API_KEY", "GEMINI_TEXT_MODEL"]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "currentPhase": 3,
+  "currentPhase": 4,
   "updatedOn": "2026-10-06",
   "weeks": {
     "1": {
@@ -46,20 +46,44 @@
       "productionAuthPersistenceSmoke": "blocked_missing_auth0_and_application_database",
       "handoff": "docs/weeks/week-3/handoff.md"
     },
-    "4": { "status": "not_started" }
+    "4": {
+      "engineering": "complete_locally",
+      "mandatoryPreviousWeeksReview": "pass_after_week_3_completion",
+      "localVerification": "pass_fresh_clone_static_build_tests_browsers_production_smoke",
+      "automatedTestsPassed": 61,
+      "browserJourneysPassed": 24,
+      "accessibilityJourneysRepeatedPassed": 12,
+      "wcagPageStateReportsPassed": 16,
+      "productionClientViewportsPassed": 2,
+      "localLatencyCacheObservations": "pass_fixture_timing_not_live_sla",
+      "featureFreeze": "2026-10-06T08:26:22Z",
+      "featureFreezeRevision": "f82d5f8",
+      "acceptance": "submission_incomplete_external_assets_and_live_verification",
+      "hostedCiAndSmoke": "blocked_missing_remote_accounts_urls",
+      "actualAuth0AndApplicationPersistence": "blocked_missing_private_setup",
+      "liveGenerationAndMediaQuality": "blocked_missing_provider_configuration",
+      "recordedDemo": "pending_blocked_live_application_and_narrated_recording_access",
+      "handoff": "docs/weeks/week-4/handoff.md",
+      "submissionManifest": "docs/weeks/week-4/submission.json"
+    }
   },
   "externalDependencies": [
     "Auth0 SPA/domain/API audience and callback/logout/origin setup",
     "Configured persistent MongoDB replica set or Atlas database for actual app use",
     "Week 2: backend GEMINI_API_KEY and a supported structured-output GEMINI_TEXT_MODEL",
     "Week 3: supported GEMINI_TTS_MODEL and YOUTUBE_API_KEY with YouTube Data API v3 enabled",
-    "GitHub repository connection, Vercel/Render projects and deployment authorization/access"
+    "GitHub repository connection, Vercel/Render projects and deployment authorization/access",
+    "Actual provider/tenant/hosted verification followed by a final five-minute narrated demo recording"
   ],
-  "nextConcreteTask": "Week 3 local implementation is complete. The user has now authorized Week 4, strictly after this handoff: review the full implementation/evidence and external blockers, write its preflight, then verify and prepare accurate submission assets. Live provider/Auth0/persistent application checks still require private external setup.",
+  "nextConcreteTask": "Stopped at the Week 4 feature-frozen boundary after all available local checks and fresh-clone verification passed. Follow docs/DEPLOYMENT.md for private Auth0/Atlas/provider configuration and authorized GitHub/Vercel/Render setup; execute actual hosted/live/CI/update checks and record the demo before marking full submission complete.",
   "git": {
     "standaloneRepository": true,
-    "baselineCommit": null,
+    "baselineCommit": "23e2194",
+    "branch": "codex/week-4-verification",
+    "verifiedSourceRevision": "1deabe64f052f5a729d75b241558a4eb5b3ddd5a",
     "remoteConfigured": false,
-    "commitsCreated": false
+    "commitsCreated": true,
+    "pushMergeDeploymentPerformed": false,
+    "userSuppliedPrompt": "preserved_untracked_excluded_from_agent_commits"
   }
 }

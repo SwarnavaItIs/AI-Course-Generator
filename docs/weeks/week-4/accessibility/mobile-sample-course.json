@@ -1,0 +1,15 @@
+{
+  "url": "/sample",
+  "viewport": {
+    "width": 390,
+    "height": 664
+  },
+  "engine": {
+    "name": "axe-core",
+    "version": "4.13.0"
+  },
+  "status": "PASS",
+  "violations": [],
+  "incomplete": [],
+  "passedRules": 20
+}

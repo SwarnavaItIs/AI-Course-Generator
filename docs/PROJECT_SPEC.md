@@ -1,6 +1,6 @@
 # Text to Learn
 
-An AI-assisted learning space for turning a free-form topic into a saved, structured course. The supplied `text_to_learn_codex_master_prompt.md` remains the original specification. The latest user request selects **Week 3** as the stopping boundary; Week 4 remains roadmap context.
+An AI-assisted learning space for turning a free-form topic into a saved, structured course. The supplied `text_to_learn_codex_master_prompt.md` remains the original specification. The latest user request authorizes **Week 4**, strictly after completing Week 3. Week 4 is the stopping boundary. Local delivery and incomplete external submission must be reported separately.
 
 ## Final product
 
@@ -34,6 +34,15 @@ Auth0 sign-in; saved courses with title, description, tags, 3â€“6 modules and 3â
 - Dedicated single-lesson html2canvas/jsPDF layout with objectives/content/code/resources/video title/URL/MCQ answers, independent of UI/sidebar. Block-aware pagination, code wrapping and genuinely long multipage evidence.
 - Idempotent ready-lesson completion and persisted owned course/library progress. Cached enhancements are reused; one failed enhancement leaves the base lesson and other tools usable.
 - Update architecture/contracts/status/evidence/handoff; distinguish fixture engineering evidence from blocked live checks. Stop at Week 3.
+
+## Week 4 scope and acceptance
+
+- Review complete implementation, handoffs and unresolved issues before work; preserve previous acceptance behavior.
+- Resolve critical authorization/provider/duplicate/persistence/media/export defects; complete responsive/accessibility/limits and measured cache/latency checks. Freeze features at the Day 24 equivalent.
+- Finalize Auth0, exact CORS, readiness, restart recovery, durable storage, SPA links and CI/deployment/update configuration; verify fresh-clone setup when possible.
+- Deliver accurate README/screenshots/architecture/model/pipeline/env/API/deployment/verification/limitations, resume bullets, five-minute demo script/shot list and recording only with access.
+- Run available automated/browser/production-build checks; record real public hosted/login/data/update checks when deployments exist. Missing repository/frontend/backend/demo URLs or required live checks keep overall submission incomplete.
+- Update status, architecture/contracts, handoff and verification; stop at Week 4 without pushing/provisioning/publishing silently.
 
 ## Requirements retained across phases
 

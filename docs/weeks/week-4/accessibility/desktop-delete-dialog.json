@@ -1,0 +1,20 @@
+{
+  "url": "/courses/eeb1b2a6-b685-47e7-8425-9285cc47d504",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "engine": {
+    "name": "axe-core",
+    "version": "4.13.0"
+  },
+  "status": "PASS",
+  "violations": [],
+  "incomplete": [
+    {
+      "id": "color-contrast",
+      "targets": [["dialog > p"]]
+    }
+  ],
+  "passedRules": 13
+}

@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-06T08:39:13.337Z",
+  "environment": "Local production build + Vite preview; real Auth0 SDK, no fixture login/provider or configured backend. Not a deployed Vercel/Render smoke or actual login.",
+  "status": "PASS",
+  "results": [
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS",
+      "checks": [
+        "built hashed assets",
+        "real SDK unconfigured state",
+        "public lesson navigation and code",
+        "SPA lesson deep-link refresh on local Vite preview",
+        "no horizontal overflow",
+        "private library unavailable without Auth0",
+        "no runtime page errors"
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": "PASS",
+      "checks": [
+        "built hashed assets",
+        "real SDK unconfigured state",
+        "public lesson navigation and code",
+        "SPA lesson deep-link refresh on local Vite preview",
+        "no horizontal overflow",
+        "private library unavailable without Auth0",
+        "no runtime page errors"
+      ]
+    }
+  ]
+}
