@@ -207,7 +207,7 @@ input {
 }
 .sidebar-label {
   margin: 52px 14px 18px;
-  color: #77816f;
+  color: #566449;
   font-size: 10px;
   letter-spacing: 1.6px;
   font-weight: 650;
@@ -255,7 +255,7 @@ input {
   margin-bottom: 9px;
 }
 .sidebar-note p {
-  color: #6a7661;
+  color: #566449;
   font-size: 12px;
   line-height: 1.8;
 }
@@ -298,7 +298,7 @@ input {
 .sidebar-footer div > span {
   display: block;
   font-size: 9px;
-  color: #798270;
+  color: #566449;
   margin-top: 3px;
 }
 .sidebar-footer .icon-button {
@@ -337,7 +337,7 @@ input {
 }
 .quiet-label {
   font-size: 11px;
-  color: #76816e;
+  color: #566449;
 }
 .page {
   padding: 43px 44px 56px;
@@ -352,7 +352,7 @@ input {
   justify-content: space-between;
   border-top: 1px solid #e8ebe3;
   font-size: 10px;
-  color: #89917f;
+  color: #566449;
 }
 .page-footer span:first-child {
   color: #607057;
@@ -363,7 +363,7 @@ input {
   font-weight: 650;
   letter-spacing: 1.65px;
   line-height: 1.7;
-  color: #75836a;
+  color: #566449;
 }
 .page-title-row {
   display: flex;
@@ -379,7 +379,7 @@ input {
   margin: 7px 0 10px;
 }
 .muted {
-  color: #73806b;
+  color: #566449;
   font-size: 13px;
   line-height: 1.8;
 }
@@ -548,7 +548,7 @@ input {
 }
 .floating-card small {
   font-size: 9px;
-  color: #768168;
+  color: #566449;
 }
 .code-card {
   left: 12%;
@@ -614,7 +614,7 @@ input {
 }
 .stat p {
   font-size: 11px;
-  color: #7a846e;
+  color: #566449;
   margin-top: 3px;
 }
 .section-title-row {
@@ -665,7 +665,7 @@ input {
 }
 .badge.light {
   background: #eaf0e1;
-  color: #667d4e;
+  color: #50653d;
 }
 .sample-feature h3 {
   font-size: 19px;
@@ -675,12 +675,12 @@ input {
 }
 .sample-feature p {
   font-size: 12px;
-  color: #7a856e;
+  color: #566449;
   line-height: 1.8;
   max-width: 570px;
 }
 .course-meta {
-  color: #76816b;
+  color: #566449;
   font-size: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -689,7 +689,7 @@ input {
   margin-top: 14px;
 }
 .course-meta > span {
-  color: #9daa8e;
+  color: #566449;
 }
 .icon-link {
   padding: 13px;
@@ -711,7 +711,7 @@ input {
   justify-content: space-between;
   align-items: center;
   gap: 18px;
-  color: #77836c;
+  color: #566449;
   font-size: 12px;
   line-height: 1.8;
 }
@@ -743,7 +743,7 @@ input {
 }
 .empty-library p {
   margin: 10px 0 20px;
-  color: #7e8872;
+  color: #566449;
   font-size: 12px;
   line-height: 1.8;
 }
@@ -795,7 +795,7 @@ input {
 }
 .tag {
   font-size: 9px;
-  color: #697957;
+  color: #566449;
   background: #f0f4e9;
   padding: 4px 9px;
   border-radius: 5px;
@@ -813,13 +813,13 @@ input {
 .course-card p {
   font-size: 11px;
   line-height: 1.85;
-  color: #7d8871;
+  color: #566449;
 }
 .progress-label {
   display: flex;
   justify-content: space-between;
   font-size: 9px;
-  color: #839077;
+  color: #566449;
   margin-top: 22px;
 }
 progress {
@@ -893,7 +893,7 @@ progress::-moz-progress-bar {
 .state-panel {
   padding: 65px 20px;
   text-align: center;
-  color: #748269;
+  color: #566449;
 }
 .state-panel svg {
   margin: 0 auto;
@@ -980,7 +980,7 @@ progress::-moz-progress-bar {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #6f7f62;
+  color: #566449;
   font-size: 11px;
   margin-bottom: 30px;
 }
@@ -1006,7 +1006,7 @@ progress::-moz-progress-bar {
 }
 .course-heading p:not(.eyebrow) {
   font-size: 13px;
-  color: #78856e;
+  color: #566449;
   line-height: 1.9;
   max-width: 650px;
 }
@@ -1059,7 +1059,7 @@ progress::-moz-progress-bar {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #6a7e55;
+  color: #566449;
   font-size: 11px;
   line-height: 1.8;
 }
@@ -1102,7 +1102,7 @@ progress::-moz-progress-bar {
   padding: 8px;
   border-radius: 6px;
   background: #e7eedb;
-  color: #708356;
+  color: #50653d;
   font-size: 12px;
 }
 .module-header h3 {
@@ -1110,7 +1110,7 @@ progress::-moz-progress-bar {
   font-weight: 600;
 }
 .module-header p {
-  color: #839077;
+  color: #566449;
   font-size: 10px;
   line-height: 1.7;
   margin-top: 5px;
@@ -1148,7 +1148,7 @@ progress::-moz-progress-bar {
 .module-card li small {
   display: block;
   font-size: 9px;
-  color: #95a186;
+  color: #566449;
   margin-top: 6px;
 }
 .lesson-list-arrow {
@@ -1177,7 +1177,7 @@ progress::-moz-progress-bar {
   margin: 15px 0 0;
   font-size: 11px;
   line-height: 1.9;
-  color: #7b896a;
+  color: #566449;
 }
 .overview-note li + li {
   margin-top: 9px;
@@ -1189,7 +1189,7 @@ progress::-moz-progress-bar {
 .overview-note p:not(.eyebrow) {
   font-size: 11px;
   line-height: 1.9;
-  color: #7a876c;
+  color: #566449;
   margin-top: 10px;
 }
 .delete-link {
@@ -1198,7 +1198,7 @@ progress::-moz-progress-bar {
   gap: 9px;
   margin: 22px auto;
   background: transparent;
-  color: #996c5b;
+  color: #7d4c3c;
   font-size: 10px;
   padding: 12px;
 }
@@ -1222,7 +1222,7 @@ progress::-moz-progress-bar {
 .confirm-dialog > p {
   font-size: 13px;
   line-height: 1.8;
-  color: #7a866d;
+  color: #566449;
 }
 .lesson-page {
   padding-top: 29px;
@@ -1266,7 +1266,7 @@ progress::-moz-progress-bar {
 }
 .outline-progress {
   font-size: 10px;
-  color: #8b977c;
+  color: #566449;
   margin: 0 3px 22px;
 }
 .lesson-outline section {
@@ -1280,7 +1280,7 @@ progress::-moz-progress-bar {
   align-items: center;
 }
 .lesson-outline h2 span {
-  color: #90a279;
+  color: #566449;
   font-weight: 450;
 }
 .lesson-outline ol {
@@ -1295,7 +1295,7 @@ progress::-moz-progress-bar {
   gap: 9px;
   border-radius: 6px;
   font-size: 10px;
-  color: #7b896b;
+  color: #566449;
   line-height: 1.7;
 }
 .lesson-outline li a:hover {
@@ -1326,11 +1326,11 @@ progress::-moz-progress-bar {
   gap: 14px;
   align-items: center;
   font-size: 10px;
-  color: #7c8a6b;
+  color: #566449;
 }
 .dot-separator {
   padding: 0 6px;
-  color: #a7b196;
+  color: #566449;
 }
 .lesson-header h1 {
   font-size: clamp(27px, 2.5vw, 36px);
@@ -1341,7 +1341,7 @@ progress::-moz-progress-bar {
 }
 .lesson-header > p {
   font-size: 13px;
-  color: #7c896d;
+  color: #566449;
   line-height: 1.8;
 }
 .objectives-panel {
@@ -1351,7 +1351,7 @@ progress::-moz-progress-bar {
   margin: 26px 0 33px;
 }
 .objectives-panel .eyebrow {
-  color: #6c8352;
+  color: #50653d;
   font-size: 9px;
 }
 .objectives-panel ul {
@@ -1367,7 +1367,7 @@ progress::-moz-progress-bar {
   align-items: center;
   font-size: 12px;
   line-height: 1.7;
-  color: #647955;
+  color: #50653d;
 }
 .objectives-panel li svg {
   flex-shrink: 0;
@@ -1437,7 +1437,7 @@ progress::-moz-progress-bar {
 .callout p {
   font-size: 12px;
   line-height: 1.9;
-  color: #758468;
+  color: #566449;
 }
 .resource-section,
 .quiz-section {
@@ -1460,7 +1460,7 @@ progress::-moz-progress-bar {
   border: 1px solid #dfe8d1;
   border-radius: 7px;
   font-size: 12px;
-  color: #6d834e;
+  color: #50653d;
   background: white;
 }
 .resource-section a svg {
@@ -1486,7 +1486,7 @@ progress::-moz-progress-bar {
 }
 .quiz-question legend > span {
   font-size: 10px;
-  color: #9cab87;
+  color: #566449;
 }
 .quiz-options {
   display: grid;
@@ -1502,7 +1502,7 @@ progress::-moz-progress-bar {
   background: #fff;
   border-radius: 7px;
   font-size: 12px;
-  color: #77886a;
+  color: #566449;
   cursor: pointer;
   line-height: 1.7;
 }
@@ -1523,7 +1523,7 @@ progress::-moz-progress-bar {
 .answer-feedback {
   padding: 14px 16px;
   background: #fbf4e6;
-  color: #927146;
+  color: #79552d;
   font-size: 11px;
   line-height: 1.9;
   margin-top: 10px;
@@ -1531,7 +1531,7 @@ progress::-moz-progress-bar {
 }
 .answer-feedback.correct {
   background: #eef5e3;
-  color: #6a824f;
+  color: #50653d;
 }
 .answer-feedback strong {
   font-weight: 650;
@@ -1568,7 +1568,7 @@ progress::-moz-progress-bar {
 .lesson-navigation small {
   display: block;
   font-size: 8px;
-  color: #8b9c74;
+  color: #566449;
   letter-spacing: 0.7px;
   margin-bottom: 7px;
 }

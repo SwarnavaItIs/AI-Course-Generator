@@ -18,14 +18,17 @@
     "lint": "eslint . --max-warnings 0",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "npm run build -w @text-to-learn/contracts && vitest run",
+    "test": "npm run build -w @text-to-learn/contracts && npm run build -w @text-to-learn/server && vitest run",
     "test:e2e": "npm run build -w @text-to-learn/contracts && playwright test",
     "check:providers": "npm run build -w @text-to-learn/contracts && npm run check:providers -w @text-to-learn/server",
     "evaluate:fixtures": "npm run build -w @text-to-learn/contracts && node --import tsx tests/evaluate-fixtures.ts",
     "evaluate:live": "npm run build -w @text-to-learn/contracts && npm run evaluate:live -w @text-to-learn/server",
-    "evaluate:enhancements": "npm run build -w @text-to-learn/contracts && node --import tsx tests/evaluate-enhancements.ts"
+    "evaluate:enhancements": "npm run build -w @text-to-learn/contracts && node --import tsx tests/evaluate-enhancements.ts",
+    "measure:latency": "npm run build -w @text-to-learn/contracts && node --import tsx tests/measure-latency.ts",
+    "inspect:production": "node --import tsx tests/inspect-production.ts"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
     "pdfjs-dist": "^6.4.299",
     "@napi-rs/canvas": "^1.0.10",
     "@vitejs/plugin-react": "^6.1.1",

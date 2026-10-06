@@ -1,6 +1,7 @@
 import { Auth0Provider, useAuth0, type AppState } from '@auth0/auth0-react';
 import { createContext, useContext, type ReactNode } from 'react';
 import { useNavigate } from 'react-router';
+import { safeReturnTo } from './return-path';
 
 interface Session {
   configured: boolean;
@@ -26,8 +27,6 @@ const unavailable: Session = {
 };
 const SessionContext = createContext<Session>(unavailable);
 export const useSession = () => useContext(SessionContext);
-const safeReturnTo = (path?: string) =>
-  path?.startsWith('/') && !path.startsWith('//') ? path : '/library';
 
 function AuthBridge({ children }: { children: ReactNode }) {
   const auth = useAuth0();

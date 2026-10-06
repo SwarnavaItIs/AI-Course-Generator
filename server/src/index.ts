@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { createServer } from 'node:http';
 import mongoose from 'mongoose';
 import { parseConfig } from './config.js';
 import { createApp } from './app.js';
@@ -25,36 +26,45 @@ async function start() {
   await initializeIndexes();
   const provider = new GeminiGenerationProvider(config);
   const worker = new GenerationWorker(provider);
-  worker.start();
   const enhancements = new GoogleEnhancementProvider(config),
     audioStorage = new GridFsAudioStorage();
   const enhancementWorker = new EnhancementWorker(enhancements, audioStorage);
+  const server = createServer(createApp(config, { provider, enhancements, audioStorage }));
+  await new Promise<void>((resolve, reject) => {
+    const failed = (error: Error) => reject(error);
+    server.once('error', failed);
+    server.listen(config.PORT, () => {
+      server.off('error', failed);
+      resolve();
+    });
+  });
+  worker.start();
   enhancementWorker.start();
-  const server = createApp(config, { provider, enhancements, audioStorage }).listen(
-    config.PORT,
-    () => console.info(JSON.stringify({ event: 'server_started', port: config.PORT })),
-  );
+  console.info(JSON.stringify({ event: 'server_started', port: config.PORT }));
   server.requestTimeout = 30_000;
   server.headersTimeout = 35_000;
+  let stopping = false;
   const stop = () => {
+    if (stopping) return;
+    stopping = true;
     const deadline = setTimeout(() => process.exit(1), 10_000).unref();
-    server.close(() => {
-      void Promise.all([worker.stop(), enhancementWorker.stop()])
-        .then(() => mongoose.disconnect())
-        .finally(() => {
-          clearTimeout(deadline);
-          process.exit(0);
-        });
-    });
+    const closed = new Promise<void>((resolve) => server.close(() => resolve()));
+    void Promise.all([closed, worker.stop(), enhancementWorker.stop()])
+      .then(() => mongoose.disconnect())
+      .finally(() => {
+        clearTimeout(deadline);
+        process.exit(0);
+      });
   };
   process.once('SIGINT', stop);
   process.once('SIGTERM', stop);
 }
-void start().catch((error: unknown) => {
+void start().catch(async (error: unknown) => {
   const message =
     error instanceof Error && error.message.startsWith('Invalid server configuration:')
       ? error.message
       : 'Server startup failed. Check configuration, MongoDB access, and replica-set setup.';
   console.error(message);
+  await mongoose.disconnect().catch(() => undefined);
   process.exitCode = 1;
 });
