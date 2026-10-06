@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: text-to-learn-api
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build -w @text-to-learn/contracts && npm run build -w @text-to-learn/server
+    startCommand: npm run start -w @text-to-learn/server
+    healthCheckPath: /ready
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 24.16.0
+      - key: MONGOMS_DISABLE_POSTINSTALL
+        value: '1'
+      - key: CLIENT_ORIGINS
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: AUTH0_DOMAIN
+        sync: false
+      - key: AUTH0_AUDIENCE
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_TEXT_MODEL
+        sync: false
+      - key: GEMINI_TTS_MODEL
+        sync: false
+      - key: GEMINI_TTS_VOICE
+        value: Kore
+      - key: YOUTUBE_API_KEY
+        sync: false

@@ -1,0 +1,33 @@
+{
+  "environment": "Normal local Vite client; no auth fixtures; no backend credentials.",
+  "results": [
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": "PASS",
+      "checks": [
+        "real SDK unconfigured state",
+        "public sample navigation",
+        "lesson deep-link refresh",
+        "no horizontal overflow",
+        "protected library",
+        "no runtime errors"
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": "PASS",
+      "checks": [
+        "real SDK unconfigured state",
+        "public sample navigation",
+        "lesson deep-link refresh",
+        "no horizontal overflow",
+        "protected library",
+        "no runtime errors"
+      ]
+    }
+  ]
+}

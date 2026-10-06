@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-05T06:57:48.804Z",
+  "scope": "Access only; no generated production course, playback, or enhancement claims.",
+  "results": [
+    {
+      "provider": "Gemini text",
+      "status": "BLOCKED",
+      "missing": ["GEMINI_API_KEY", "GEMINI_TEXT_MODEL"]
+    },
+    {
+      "provider": "Gemini TTS",
+      "status": "BLOCKED",
+      "missing": ["GEMINI_API_KEY", "GEMINI_TTS_MODEL"]
+    },
+    {
+      "provider": "YouTube search",
+      "status": "BLOCKED",
+      "missing": ["YOUTUBE_API_KEY"]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "currentPhase": 3,
+  "updatedOn": "2026-10-06",
+  "weeks": {
+    "1": {
+      "engineering": "complete",
+      "localVerification": "pass",
+      "automatedTestsPassed": 14,
+      "browserJourneysPassed": 6,
+      "acceptance": "local_complete_live_verification_pending",
+      "liveAuth0": "blocked",
+      "liveProviders": "blocked",
+      "hostedSmoke": "blocked"
+    },
+    "2": {
+      "engineering": "complete",
+      "mandatoryWeek1Review": "pass",
+      "localVerification": "pass",
+      "automatedTestsPassed": 35,
+      "browserJourneysPassed": 12,
+      "week1Regressions": "pass",
+      "fixtureEvaluation": "pass_three_topics",
+      "liveGeminiEvaluation": "blocked_missing_key_and_model",
+      "productionAuthPersistenceSmoke": "blocked_missing_auth0_and_application_database",
+      "acceptance": "local_complete_live_verification_pending",
+      "handoff": "docs/weeks/week-2/handoff.md"
+    },
+    "3": {
+      "engineering": "complete",
+      "mandatoryPreviousWeekReview": "pass",
+      "localVerification": "pass",
+      "automatedTestsPassed": 57,
+      "browserJourneysPassed": 20,
+      "week1AndWeek2Regressions": "pass",
+      "longPdf": {
+        "pages": 11,
+        "sourceBlocks": 35,
+        "sourceCharacters": 25810,
+        "coverageAndRenderedPages": "pass"
+      },
+      "fixtureAudioPlayback": "pass_wav_decode_play_download",
+      "acceptance": "local_complete_live_verification_pending",
+      "liveYouTube": "blocked_missing_key",
+      "liveHinglishMeaning": "blocked_missing_gemini_key_and_text_model",
+      "liveSpeechPronunciation": "blocked_missing_gemini_key_and_tts_model",
+      "productionAuthPersistenceSmoke": "blocked_missing_auth0_and_application_database",
+      "handoff": "docs/weeks/week-3/handoff.md"
+    },
+    "4": { "status": "not_started" }
+  },
+  "externalDependencies": [
+    "Auth0 SPA/domain/API audience and callback/logout/origin setup",
+    "Configured persistent MongoDB replica set or Atlas database for actual app use",
+    "Week 2: backend GEMINI_API_KEY and a supported structured-output GEMINI_TEXT_MODEL",
+    "Week 3: supported GEMINI_TTS_MODEL and YOUTUBE_API_KEY with YouTube Data API v3 enabled",
+    "GitHub repository connection, Vercel/Render projects and deployment authorization/access"
+  ],
+  "nextConcreteTask": "Week 3 local implementation is complete. The user has now authorized Week 4, strictly after this handoff: review the full implementation/evidence and external blockers, write its preflight, then verify and prepare accurate submission assets. Live provider/Auth0/persistent application checks still require private external setup.",
+  "git": {
+    "standaloneRepository": true,
+    "baselineCommit": null,
+    "remoteConfigured": false,
+    "commitsCreated": false
+  }
+}

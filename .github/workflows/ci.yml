@@ -1,0 +1,27 @@
+name: Verify Text to Learn
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      MONGOMS_DISABLE_POSTINSTALL: '1'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build
+      - run: npm test
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e

@@ -1,0 +1,577 @@
+{
+  "blocks": [
+    {
+      "kind": "title",
+      "text": "Long lesson: complete content across pages",
+      "id": "block-0"
+    },
+    {
+      "kind": "text",
+      "text": "A deliberately long authored export fixture with oversized paragraphs, code, links, Unicode and MCQ answers.",
+      "id": "block-1"
+    },
+    {
+      "kind": "heading",
+      "text": "Learning objectives",
+      "id": "block-2"
+    },
+    {
+      "kind": "text",
+      "text": "• Choose semantic HTML elements",
+      "id": "block-3"
+    },
+    {
+      "kind": "text",
+      "text": "• Connect a label to a form input",
+      "id": "block-4"
+    },
+    {
+      "kind": "heading",
+      "text": "START_SENTINEL · A document with meaningful structure",
+      "id": "block-5"
+    },
+    {
+      "kind": "text",
+      "text": "Sentence 1: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 2: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 3: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 4: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 5: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 6: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 7: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 8: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 9: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 10: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 11: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 12: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 13: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 14: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 15: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 16: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 17: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 18: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 19: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 20: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 21: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 22: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 23: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 24: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 25: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 26: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 27: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 28: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs.",
+      "id": "block-6"
+    },
+    {
+      "kind": "heading",
+      "text": "Middle of the lesson",
+      "id": "block-7"
+    },
+    {
+      "kind": "text",
+      "text": "Sentence 1: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 2: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 3: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 4: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 5: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 6: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 7: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 8: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 9: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 10: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 11: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 12: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 13: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 14: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 15: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 16: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 17: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 18: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 19: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 20: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 21: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 22: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 23: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 24: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 25: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 26: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 27: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 28: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs.",
+      "id": "block-8"
+    },
+    {
+      "kind": "heading",
+      "text": "Code · javascript",
+      "id": "block-9"
+    },
+    {
+      "kind": "code",
+      "text": "// Code line 001: every source line must survive pagination\nconst example1 = \"veryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifier\";\n// Code line 002: every source line must survive pagination\nconst example2 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 003: every source line must survive pagination\nconst example3 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 004: every source line must survive pagination\nconst example4 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 005: every source line must survive pagination\nconst example5 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 006: every source line must survive pagination\nconst example6 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 007: every source line must survive pagination\nconst example7 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 008: every source line must survive pagination\nconst example8 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 009: every source line must survive pagination\nconst example9 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 010: every source line must survive pagination\nconst example10 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 011: every source line must survive pagination\nconst example11 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 012: every source line must survive pagination\nconst example12 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 013: every source line must survive pagination\nconst example13 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 014: every source line must survive pagination\nconst example14 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 015: every source line must survive pagination\nconst example15 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 016: every source line must survive pagination\nconst example16 = \"veryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifier\";\n// Code line 017: every source line must survive pagination\nconst example17 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 018: every source line must survive pagination\nconst example18 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 019: every source line must survive pagination\nconst example19 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 020: every source line must survive pagination\nconst example20 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 021: every source line must survive pagination\nconst example21 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 022: every source line must survive pagination\nconst example22 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 023: every source line must survive pagination\nconst example23 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 024: every source line must survive pagination\nconst example24 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 025: every source line must survive pagination\nconst example25 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 026: every source line must survive pagination\nconst example26 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 027: every source line must survive pagination\nconst example27 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 028: every source line must survive pagination\nconst example28 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 029: every source line must survive pagination\nconst example29 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 030: every source line must survive pagination\nconst example30 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 031: every source line must survive pagination\nconst example31 = \"veryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifier\";\n// Code line 032: every source line must survive pagination\nconst example32 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 033: every source line must survive pagination\nconst example33 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 034: every source line must survive pagination\nconst example34 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 035: every source line must survive pagination\nconst example35 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 036: every source line must survive pagination\nconst example36 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 037: every source line must survive pagination\nconst example37 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 038: every source line must survive pagination\nconst example38 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 039: every source line must survive pagination\nconst example39 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 040: every source line must survive pagination\nconst example40 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 041: every source line must survive pagination\nconst example41 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 042: every source line must survive pagination\nconst example42 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 043: every source line must survive pagination\nconst example43 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 044: every source line must survive pagination\nconst example44 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 045: every source line must survive pagination\nconst example45 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 046: every source line must survive pagination\nconst example46 = \"veryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifier\";\n// Code line 047: every source line must survive pagination\nconst example47 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 048: every source line must survive pagination\nconst example48 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 049: every source line must survive pagination\nconst example49 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 050: every source line must survive pagination\nconst example50 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 051: every source line must survive pagination\nconst example51 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 052: every source line must survive pagination\nconst example52 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 053: every source line must survive pagination\nconst example53 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 054: every source line must survive pagination\nconst example54 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 055: every source line must survive pagination\nconst example55 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 056: every source line must survive pagination\nconst example56 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 057: every source line must survive pagination\nconst example57 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 058: every source line must survive pagination\nconst example58 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 059: every source line must survive pagination\nconst example59 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 060: every source line must survive pagination\nconst example60 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 061: every source line must survive pagination\nconst example61 = \"veryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifier\";\n// Code line 062: every source line must survive pagination\nconst example62 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 063: every source line must survive pagination\nconst example63 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 064: every source line must survive pagination\nconst example64 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 065: every source line must survive pagination\nconst example65 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 066: every source line must survive pagination\nconst example66 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 067: every source line must survive pagination\nconst example67 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 068: every source line must survive pagination\nconst example68 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 069: every source line must survive pagination\nconst example69 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 070: every source line must survive pagination\nconst example70 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 071: every source line must survive pagination\nconst example71 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 072: every source line must survive pagination\nconst example72 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 073: every source line must survive pagination\nconst example73 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 074: every source line must survive pagination\nconst example74 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 075: every source line must survive pagination\nconst example75 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 076: every source line must survive pagination\nconst example76 = \"veryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifier\";\n// Code line 077: every source line must survive pagination\nconst example77 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 078: every source line must survive pagination\nconst example78 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 079: every source line must survive pagination\nconst example79 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 080: every source line must survive pagination\nconst example80 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 081: every source line must survive pagination\nconst example81 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 082: every source line must survive pagination\nconst example82 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 083: every source line must survive pagination\nconst example83 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 084: every source line must survive pagination\nconst example84 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 085: every source line must survive pagination\nconst example85 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 086: every source line must survive pagination\nconst example86 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 087: every source line must survive pagination\nconst example87 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 088: every source line must survive pagination\nconst example88 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 089: every source line must survive pagination\nconst example89 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 090: every source line must survive pagination\nconst example90 = \"veryLongIdentifierveryLongIdentifier\";\n// CODE_END_SENTINEL: all 90 lines included.",
+      "id": "block-10"
+    },
+    {
+      "kind": "text",
+      "text": "END_SENTINEL · No content should be missing. Hindi-English: variables को English में रखें।\nunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWord",
+      "id": "block-11"
+    },
+    {
+      "kind": "heading",
+      "text": "Check your work",
+      "id": "block-12"
+    },
+    {
+      "kind": "text",
+      "text": "The final MCQ answer section must be exported even when the application sidebar is closed.",
+      "id": "block-13"
+    },
+    {
+      "kind": "heading",
+      "text": "Resources",
+      "id": "block-14"
+    },
+    {
+      "kind": "text",
+      "text": "Read more on MDN Web Docs\nhttps://developer.mozilla.org/en-US/docs/Glossary/Semantics",
+      "href": "https://developer.mozilla.org/en-US/docs/Glossary/Semantics",
+      "id": "block-15"
+    },
+    {
+      "kind": "heading",
+      "text": "Videos",
+      "id": "block-16"
+    },
+    {
+      "kind": "text",
+      "text": "Semantic HTML reference video\nFixture channel\nhttps://www.youtube.com/watch?v=AAAAAAAAAAA",
+      "href": "https://www.youtube.com/watch?v=AAAAAAAAAAA",
+      "id": "block-17"
+    },
+    {
+      "kind": "heading",
+      "text": "Knowledge check · questions and answers",
+      "id": "block-18"
+    },
+    {
+      "kind": "heading",
+      "text": "1. Which element represents a page action?",
+      "id": "block-19"
+    },
+    {
+      "kind": "text",
+      "text": "A. button",
+      "id": "block-20"
+    },
+    {
+      "kind": "text",
+      "text": "B. div",
+      "id": "block-21"
+    },
+    {
+      "kind": "text",
+      "text": "Answer: A. button\nExplanation: A button supplies a native interactive role and keyboard support.",
+      "id": "block-22"
+    },
+    {
+      "kind": "heading",
+      "text": "2. What connects a label and an input?",
+      "id": "block-23"
+    },
+    {
+      "kind": "text",
+      "text": "A. Putting them in the same stylesheet",
+      "id": "block-24"
+    },
+    {
+      "kind": "text",
+      "text": "B. Matching for and id attributes",
+      "id": "block-25"
+    },
+    {
+      "kind": "text",
+      "text": "Answer: B. Matching for and id attributes\nExplanation: The association gives the input an accessible label.",
+      "id": "block-26"
+    },
+    {
+      "kind": "heading",
+      "text": "3. What should headings express?",
+      "id": "block-27"
+    },
+    {
+      "kind": "text",
+      "text": "A. The logical content hierarchy",
+      "id": "block-28"
+    },
+    {
+      "kind": "text",
+      "text": "B. Only the size of the text",
+      "id": "block-29"
+    },
+    {
+      "kind": "text",
+      "text": "Answer: A. The logical content hierarchy\nExplanation: Headings describe sections; CSS can change their visual size.",
+      "id": "block-30"
+    },
+    {
+      "kind": "heading",
+      "text": "4. Which element should navigate to another URL?",
+      "id": "block-31"
+    },
+    {
+      "kind": "text",
+      "text": "A. A paragraph with a click handler",
+      "id": "block-32"
+    },
+    {
+      "kind": "text",
+      "text": "B. An anchor with href",
+      "id": "block-33"
+    },
+    {
+      "kind": "text",
+      "text": "Answer: B. An anchor with href\nExplanation: Anchors provide link semantics and browser navigation behavior.",
+      "id": "block-34"
+    }
+  ],
+  "pages": [
+    {
+      "number": 1,
+      "fragments": [
+        {
+          "blockId": "block-0",
+          "start": 0,
+          "end": 42,
+          "text": "Long lesson: complete content across pages",
+          "top": 0,
+          "bottom": 37.5
+        },
+        {
+          "blockId": "block-1",
+          "start": 0,
+          "end": 108,
+          "text": "A deliberately long authored export fixture with oversized paragraphs, code, links, Unicode and MCQ answers.",
+          "top": 55.5,
+          "bottom": 106.6875
+        },
+        {
+          "blockId": "block-2",
+          "start": 0,
+          "end": 19,
+          "text": "Learning objectives",
+          "top": 118.6875,
+          "bottom": 145.28125
+        },
+        {
+          "blockId": "block-3",
+          "start": 0,
+          "end": 31,
+          "text": "• Choose semantic HTML elements",
+          "top": 155.28125,
+          "bottom": 180.875
+        },
+        {
+          "blockId": "block-4",
+          "start": 0,
+          "end": 33,
+          "text": "• Connect a label to a form input",
+          "top": 192.875,
+          "bottom": 218.46875
+        },
+        {
+          "blockId": "block-5",
+          "start": 0,
+          "end": 53,
+          "text": "START_SENTINEL · A document with meaningful structure",
+          "top": 230.46875,
+          "bottom": 257.0625
+        },
+        {
+          "blockId": "block-6",
+          "start": 0,
+          "end": 2195,
+          "text": "Sentence 1: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 2: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 3: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 4: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 5: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 6: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 7: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 8: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 9: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 10: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 11: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs ",
+          "top": 267.0625,
+          "bottom": 906.90625
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "fragments": [
+        {
+          "blockId": "block-6",
+          "start": 2195,
+          "end": 5441,
+          "text": "explain ideas, and where a useful example belongs. Sentence 12: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 13: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 14: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 15: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 16: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 17: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 18: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 19: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 20: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 21: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 22: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 23: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 24: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 25: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 26: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 27: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the ",
+          "top": 0,
+          "bottom": 946.96875
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "fragments": [
+        {
+          "blockId": "block-6",
+          "start": 5441,
+          "end": 5730,
+          "text": "following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 28: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs.",
+          "top": 0,
+          "bottom": 102.375
+        },
+        {
+          "blockId": "block-7",
+          "start": 0,
+          "end": 20,
+          "text": "Middle of the lesson",
+          "top": 114.375,
+          "bottom": 140.96875
+        },
+        {
+          "blockId": "block-8",
+          "start": 0,
+          "end": 2639,
+          "text": "Sentence 1: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 2: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 3: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 4: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 5: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 6: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 7: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 8: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 9: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 10: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 11: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 12: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 13: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful ",
+          "top": 150.96875,
+          "bottom": 918.78125
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "fragments": [
+        {
+          "blockId": "block-8",
+          "start": 2639,
+          "end": 5730,
+          "text": "example belongs. Sentence 14: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 15: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 16: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 17: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 18: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 19: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 20: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 21: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 22: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 23: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 24: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 25: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 26: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 27: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs. Sentence 28: Semantic HTML gives documents meaningful structure. Learners should understand why a heading describes the following section, how paragraphs explain ideas, and where a useful example belongs.",
+          "top": 0,
+          "bottom": 921.375
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "fragments": [
+        {
+          "blockId": "block-9",
+          "start": 0,
+          "end": 17,
+          "text": "Code · javascript",
+          "top": 12,
+          "bottom": 38.59375
+        },
+        {
+          "blockId": "block-10",
+          "start": 0,
+          "end": 2593,
+          "text": "// Code line 001: every source line must survive pagination\nconst example1 = \"veryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifier\";\n// Code line 002: every source line must survive pagination\nconst example2 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 003: every source line must survive pagination\nconst example3 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 004: every source line must survive pagination\nconst example4 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 005: every source line must survive pagination\nconst example5 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 006: every source line must survive pagination\nconst example6 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 007: every source line must survive pagination\nconst example7 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 008: every source line must survive pagination\nconst example8 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 009: every source line must survive pagination\nconst example9 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 010: every source line must survive pagination\nconst example10 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 011: every source line must survive pagination\nconst example11 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 012: every source line must survive pagination\nconst example12 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 013: every source line must survive pagination\nconst example13 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 014: every source line must survive pagination\nconst example14 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 015: every source line must survive pagination\nconst example15 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 016: every source line must survive pagination\nconst example16 = \"veryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifier\";\n// Code line 017: every source line must survive pagination\nconst example17 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 018: every source line must survive pagination\nconst example18 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 019: every source line must survive pagination\nconst example19 = \"veryLongIdentifierveryLongIdentifier\";\n",
+          "top": 48.59375,
+          "bottom": 948.0625
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "fragments": [
+        {
+          "blockId": "block-10",
+          "start": 2593,
+          "end": 5251,
+          "text": "// Code line 020: every source line must survive pagination\nconst example20 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 021: every source line must survive pagination\nconst example21 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 022: every source line must survive pagination\nconst example22 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 023: every source line must survive pagination\nconst example23 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 024: every source line must survive pagination\nconst example24 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 025: every source line must survive pagination\nconst example25 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 026: every source line must survive pagination\nconst example26 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 027: every source line must survive pagination\nconst example27 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 028: every source line must survive pagination\nconst example28 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 029: every source line must survive pagination\nconst example29 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 030: every source line must survive pagination\nconst example30 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 031: every source line must survive pagination\nconst example31 = \"veryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifier\";\n// Code line 032: every source line must survive pagination\nconst example32 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 033: every source line must survive pagination\nconst example33 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 034: every source line must survive pagination\nconst example34 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 035: every source line must survive pagination\nconst example35 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 036: every source line must survive pagination\nconst example36 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 037: every source line must survive pagination\nconst example37 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 038: every source line must survive pagination\nconst example38 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 039: every source line must survive pagination\nconst example39 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 040: every source line must survive pagination\nconst example40 = \"veryLongIdentifierveryLongIdentifier\";\n",
+          "top": 0,
+          "bottom": 941.0625
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "fragments": [
+        {
+          "blockId": "block-10",
+          "start": 5251,
+          "end": 7851,
+          "text": "// Code line 041: every source line must survive pagination\nconst example41 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 042: every source line must survive pagination\nconst example42 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 043: every source line must survive pagination\nconst example43 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 044: every source line must survive pagination\nconst example44 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 045: every source line must survive pagination\nconst example45 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 046: every source line must survive pagination\nconst example46 = \"veryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifier\";\n// Code line 047: every source line must survive pagination\nconst example47 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 048: every source line must survive pagination\nconst example48 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 049: every source line must survive pagination\nconst example49 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 050: every source line must survive pagination\nconst example50 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 051: every source line must survive pagination\nconst example51 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 052: every source line must survive pagination\nconst example52 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 053: every source line must survive pagination\nconst example53 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 054: every source line must survive pagination\nconst example54 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 055: every source line must survive pagination\nconst example55 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 056: every source line must survive pagination\nconst example56 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 057: every source line must survive pagination\nconst example57 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 058: every source line must survive pagination\nconst example58 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 059: every source line must survive pagination\nconst example59 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 060: every source line must survive pagination\nconst example60 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 061: every source line must survive pagination\n",
+          "top": 0,
+          "bottom": 920.265625
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "fragments": [
+        {
+          "blockId": "block-10",
+          "start": 7851,
+          "end": 10571,
+          "text": "const example61 = \"veryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifier\";\n// Code line 062: every source line must survive pagination\nconst example62 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 063: every source line must survive pagination\nconst example63 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 064: every source line must survive pagination\nconst example64 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 065: every source line must survive pagination\nconst example65 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 066: every source line must survive pagination\nconst example66 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 067: every source line must survive pagination\nconst example67 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 068: every source line must survive pagination\nconst example68 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 069: every source line must survive pagination\nconst example69 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 070: every source line must survive pagination\nconst example70 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 071: every source line must survive pagination\nconst example71 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 072: every source line must survive pagination\nconst example72 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 073: every source line must survive pagination\nconst example73 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 074: every source line must survive pagination\nconst example74 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 075: every source line must survive pagination\nconst example75 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 076: every source line must survive pagination\nconst example76 = \"veryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifierveryLongIdentifier\";\n// Code line 077: every source line must survive pagination\nconst example77 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 078: every source line must survive pagination\nconst example78 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 079: every source line must survive pagination\nconst example79 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 080: every source line must survive pagination\nconst example80 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 081: every source line must survive pagination\n",
+          "top": 0,
+          "bottom": 941.0625
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "fragments": [
+        {
+          "blockId": "block-10",
+          "start": 10571,
+          "end": 11735,
+          "text": "const example81 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 082: every source line must survive pagination\nconst example82 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 083: every source line must survive pagination\nconst example83 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 084: every source line must survive pagination\nconst example84 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 085: every source line must survive pagination\nconst example85 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 086: every source line must survive pagination\nconst example86 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 087: every source line must survive pagination\nconst example87 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 088: every source line must survive pagination\nconst example88 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 089: every source line must survive pagination\nconst example89 = \"veryLongIdentifierveryLongIdentifier\";\n// Code line 090: every source line must survive pagination\nconst example90 = \"veryLongIdentifierveryLongIdentifier\";\n// CODE_END_SENTINEL: all 90 lines included.",
+          "top": 0,
+          "bottom": 441.9375
+        },
+        {
+          "blockId": "block-11",
+          "start": 0,
+          "end": 1171,
+          "text": "END_SENTINEL · No content should be missing. Hindi-English: variables को English में रखें।\nunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWordunbrokenWord",
+          "top": 453.9375,
+          "bottom": 837.84375
+        },
+        {
+          "blockId": "block-12",
+          "start": 0,
+          "end": 15,
+          "text": "Check your work",
+          "top": 849.84375,
+          "bottom": 876.4375
+        },
+        {
+          "blockId": "block-13",
+          "start": 0,
+          "end": 90,
+          "text": "The final MCQ answer section must be exported even when the application sidebar is closed.",
+          "top": 886.4375,
+          "bottom": 912.03125
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "fragments": [
+        {
+          "blockId": "block-14",
+          "start": 0,
+          "end": 9,
+          "text": "Resources",
+          "top": 12,
+          "bottom": 38.59375
+        },
+        {
+          "blockId": "block-15",
+          "start": 0,
+          "end": 85,
+          "text": "Read more on MDN Web Docs\nhttps://developer.mozilla.org/en-US/docs/Glossary/Semantics",
+          "top": 48.59375,
+          "bottom": 99.78125
+        },
+        {
+          "blockId": "block-16",
+          "start": 0,
+          "end": 6,
+          "text": "Videos",
+          "top": 111.78125,
+          "bottom": 138.375
+        },
+        {
+          "blockId": "block-17",
+          "start": 0,
+          "end": 89,
+          "text": "Semantic HTML reference video\nFixture channel\nhttps://www.youtube.com/watch?v=AAAAAAAAAAA",
+          "top": 148.375,
+          "bottom": 225.15625
+        },
+        {
+          "blockId": "block-18",
+          "start": 0,
+          "end": 39,
+          "text": "Knowledge check · questions and answers",
+          "top": 237.15625,
+          "bottom": 263.75
+        },
+        {
+          "blockId": "block-19",
+          "start": 0,
+          "end": 42,
+          "text": "1. Which element represents a page action?",
+          "top": 275.75,
+          "bottom": 302.34375
+        },
+        {
+          "blockId": "block-20",
+          "start": 0,
+          "end": 9,
+          "text": "A. button",
+          "top": 312.34375,
+          "bottom": 337.9375
+        },
+        {
+          "blockId": "block-21",
+          "start": 0,
+          "end": 6,
+          "text": "B. div",
+          "top": 349.9375,
+          "bottom": 375.53125
+        },
+        {
+          "blockId": "block-22",
+          "start": 0,
+          "end": 96,
+          "text": "Answer: A. button\nExplanation: A button supplies a native interactive role and keyboard support.",
+          "top": 387.53125,
+          "bottom": 438.71875
+        },
+        {
+          "blockId": "block-23",
+          "start": 0,
+          "end": 38,
+          "text": "2. What connects a label and an input?",
+          "top": 450.71875,
+          "bottom": 477.3125
+        },
+        {
+          "blockId": "block-24",
+          "start": 0,
+          "end": 38,
+          "text": "A. Putting them in the same stylesheet",
+          "top": 487.3125,
+          "bottom": 512.90625
+        },
+        {
+          "blockId": "block-25",
+          "start": 0,
+          "end": 33,
+          "text": "B. Matching for and id attributes",
+          "top": 524.90625,
+          "bottom": 550.5
+        },
+        {
+          "blockId": "block-26",
+          "start": 0,
+          "end": 107,
+          "text": "Answer: B. Matching for and id attributes\nExplanation: The association gives the input an accessible label.",
+          "top": 562.5,
+          "bottom": 613.6875
+        },
+        {
+          "blockId": "block-27",
+          "start": 0,
+          "end": 32,
+          "text": "3. What should headings express?",
+          "top": 625.6875,
+          "bottom": 652.28125
+        },
+        {
+          "blockId": "block-28",
+          "start": 0,
+          "end": 32,
+          "text": "A. The logical content hierarchy",
+          "top": 662.28125,
+          "bottom": 687.875
+        },
+        {
+          "blockId": "block-29",
+          "start": 0,
+          "end": 28,
+          "text": "B. Only the size of the text",
+          "top": 699.875,
+          "bottom": 725.46875
+        },
+        {
+          "blockId": "block-30",
+          "start": 0,
+          "end": 115,
+          "text": "Answer: A. The logical content hierarchy\nExplanation: Headings describe sections; CSS can change their visual size.",
+          "top": 737.46875,
+          "bottom": 788.65625
+        },
+        {
+          "blockId": "block-31",
+          "start": 0,
+          "end": 48,
+          "text": "4. Which element should navigate to another URL?",
+          "top": 800.65625,
+          "bottom": 827.25
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "fragments": [
+        {
+          "blockId": "block-32",
+          "start": 0,
+          "end": 35,
+          "text": "A. A paragraph with a click handler",
+          "top": 0,
+          "bottom": 25.59375
+        },
+        {
+          "blockId": "block-33",
+          "start": 0,
+          "end": 22,
+          "text": "B. An anchor with href",
+          "top": 37.59375,
+          "bottom": 63.1875
+        },
+        {
+          "blockId": "block-34",
+          "start": 0,
+          "end": 107,
+          "text": "Answer: B. An anchor with href\nExplanation: Anchors provide link semantics and browser navigation behavior.",
+          "top": 75.1875,
+          "bottom": 126.375
+        }
+      ]
+    }
+  ],
+  "pageWidth": 794,
+  "pageHeight": 1123,
+  "bodyHeight": 967
+}

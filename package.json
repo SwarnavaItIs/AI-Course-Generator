@@ -1,0 +1,51 @@
+{
+  "name": "text-to-learn",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "client",
+    "server",
+    "packages/contracts"
+  ],
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "npm run build -w @text-to-learn/contracts && concurrently -k -n contracts,api,web \"npm run dev -w @text-to-learn/contracts\" \"npm run dev -w @text-to-learn/server\" \"npm run dev -w @text-to-learn/client\"",
+    "build": "npm run build -w @text-to-learn/contracts && npm run build -w @text-to-learn/server && npm run build -w @text-to-learn/client",
+    "typecheck": "npm run build -w @text-to-learn/contracts && npm run typecheck --workspaces --if-present && tsc -p tests/tsconfig.json --noEmit",
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run build -w @text-to-learn/contracts && vitest run",
+    "test:e2e": "npm run build -w @text-to-learn/contracts && playwright test",
+    "check:providers": "npm run build -w @text-to-learn/contracts && npm run check:providers -w @text-to-learn/server",
+    "evaluate:fixtures": "npm run build -w @text-to-learn/contracts && node --import tsx tests/evaluate-fixtures.ts",
+    "evaluate:live": "npm run build -w @text-to-learn/contracts && npm run evaluate:live -w @text-to-learn/server",
+    "evaluate:enhancements": "npm run build -w @text-to-learn/contracts && node --import tsx tests/evaluate-enhancements.ts"
+  },
+  "devDependencies": {
+    "pdfjs-dist": "^6.4.299",
+    "@napi-rs/canvas": "^1.0.10",
+    "@vitejs/plugin-react": "^6.1.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "vite": "^8.3.2",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^24.0.0",
+    "@types/supertest": "^6.0.3",
+    "concurrently": "^9.2.1",
+    "eslint": "^10.12.0",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "globals": "^16.4.0",
+    "jose": "^6.1.0",
+    "mongodb-memory-server": "^10.3.0",
+    "prettier": "^3.6.2",
+    "supertest": "^7.1.4",
+    "tsx": "^4.20.6",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.0",
+    "vitest": "^5.0.3"
+  }
+}

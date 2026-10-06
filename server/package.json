@@ -1,0 +1,30 @@
+{
+  "name": "@text-to-learn/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "start": "node dist/index.js",
+    "check:providers": "tsx src/scripts/check-providers.ts",
+    "evaluate:live": "tsx src/scripts/evaluate-generation.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^2.27.0",
+    "@text-to-learn/contracts": "0.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-oauth2-jwt-bearer": "^1.7.0",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "mongoose": "^9.10.4",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3"
+  }
+}

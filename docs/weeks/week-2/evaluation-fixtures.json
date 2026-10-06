@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-05T14:25:25.161Z",
+  "scope": "Authored deterministic fixtures, not live Gemini quality. All three also run through the production API/worker/persistence in generation.test.ts. Manual content review is in evaluation.md.",
+  "results": [
+    {
+      "topic": "Python for beginners",
+      "status": "PASS",
+      "title": "Python: from values to small programs",
+      "modules": 3,
+      "lessons": 9,
+      "lessonReviewed": "Values and types",
+      "blocks": 6,
+      "quizQuestions": 4,
+      "correctAnswerIndexes": [1, 0, 2, 1],
+      "catalogueLinks": ["https://docs.python.org/3/tutorial/"],
+      "unresolvedSuggestions": 9
+    },
+    {
+      "topic": "Persuasive writing",
+      "status": "PASS",
+      "title": "Persuasive writing: from audience to revision",
+      "modules": 3,
+      "lessons": 9,
+      "lessonReviewed": "Audience and purpose",
+      "blocks": 6,
+      "quizQuestions": 4,
+      "correctAnswerIndexes": [1, 2, 0, 1],
+      "catalogueLinks": [
+        "https://owl.purdue.edu/owl/general_writing/academic_writing/essay_writing/index.html"
+      ],
+      "unresolvedSuggestions": 9
+    },
+    {
+      "topic": "World history",
+      "status": "PASS",
+      "title": "World history to 1500: evidence, societies and connections",
+      "modules": 3,
+      "lessons": 9,
+      "lessonReviewed": "Sources and historical questions",
+      "blocks": 6,
+      "quizQuestions": 4,
+      "correctAnswerIndexes": [1, 0, 2, 1],
+      "catalogueLinks": ["https://openstax.org/details/books/world-history-volume-1"],
+      "unresolvedSuggestions": 9
+    }
+  ]
+}
