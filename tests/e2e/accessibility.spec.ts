@@ -107,25 +107,30 @@ test('lesson reflows at narrow/tablet widths and 200 percent text sizing with re
         const parts: string[] = [];
         let current: Element | null = element;
         while (current && current !== document.body) {
-          const parent: Element | null = current.parentElement;
-          if (!parent) break;
           parts.unshift(
-            `${current.tagName.toLowerCase()}:nth-child(${Array.from(parent.children).indexOf(current) + 1})`,
+            current.id
+              ? `#${CSS.escape(current.id)}`
+              : current.tagName.toLowerCase() +
+                  Array.from(current.classList)
+                    .map((name) => `.${CSS.escape(name)}`)
+                    .join(''),
           );
-          current = parent;
+          current = current.parentElement;
         }
         return `body${parts.length ? ' > ' + parts.join(' > ') : ''}{font-size:${size * 2}px !important;}`;
       })
       .join('\n'),
   );
-  // Persistent selectors retain doubled sizes if React replaces a node during rendering.
+  // Class/ID selectors survive React's transient siblings and lazy-content replacement.
   await page.addStyleTag({ content: textRules });
-  expect(
-    await page
-      .locator('.lesson-prose > p')
-      .first()
-      .evaluate((element) => parseFloat(getComputedStyle(element).fontSize)),
-  ).toBe(before * 2);
+  await expect
+    .poll(() =>
+      page
+        .locator('.lesson-prose > p')
+        .first()
+        .evaluate((element) => parseFloat(getComputedStyle(element).fontSize)),
+    )
+    .toBe(before * 2);
   await expect
     .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
     .toBe(true);
