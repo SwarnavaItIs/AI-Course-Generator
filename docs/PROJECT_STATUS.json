@@ -97,5 +97,15 @@
     "pushPerformed": true,
     "mergePerformed": false,
     "deploymentPerformed": false
-  }
+  },
+  "repositoryCleanup": {
+    "updatedOn": "2026-10-13",
+    "removedGeneratedArtifacts": 30,
+    "removedGeneratedBytes": 12417593,
+    "curatedScreenshots": 9,
+    "temporaryVerificationClonesRemoved": 2,
+    "history": "preserved",
+    "evidence": "docs/delivery/2026-10-13-cleanup.md"
+  },
+  "deploymentGuidance": "docs/DEPLOYMENT_QUICKSTART.md"
 }

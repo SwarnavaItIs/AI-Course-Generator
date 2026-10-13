@@ -4,6 +4,8 @@ Status on **13 October 2026**: the verified project is published to [GitHub](htt
 
 ## Private configuration
 
+For a dashboard walkthrough using your existing projects, start with [DEPLOYMENT_QUICKSTART.md](DEPLOYMENT_QUICKSTART.md).
+
 Use Node 24 and the committed lockfile. Repository root is the project root for both hosting services. Keep backend secrets in Render's environment settings; frontend VITE_ values become public build output. Examples in `.env.example` are placeholders. Configure privately; never send keys through chat or commit `.env`.
 
 | Render variable                    | Required behavior                                                                             |

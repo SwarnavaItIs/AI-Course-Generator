@@ -25,10 +25,10 @@ The project initially contained only the specification and inherited an unrelate
 
 Production-build screenshots show the real SDK with sign-in unavailable until configured. Saved/generated/media screenshots in earlier evidence use explicitly authored browser fixtures.
 
-![Production welcome, desktop](docs/weeks/week-4/screenshots/desktop-production-welcome.png)
-![Production sample lesson, mobile](docs/weeks/week-4/screenshots/mobile-production-lesson.png)
+![Production welcome, desktop](docs/screenshots/desktop-public-welcome.png)
+![Production sample lesson, mobile](docs/screenshots/mobile-public-lesson.png)
 
-[Week 2 evidence](docs/weeks/week-2/verification.md) and [Week 3 evidence](docs/weeks/week-3/verification.md) contain saved generation, Hinglish/media and multi-page PDF examples. [Week 4 screenshots](docs/weeks/week-4/screenshots) include actual doubled-text reflow checks.
+[Week 2 evidence](docs/weeks/week-2/verification.md) and [Week 3 evidence](docs/weeks/week-3/verification.md) contain saved generation, Hinglish/media and multi-page PDF examples. [Curated screenshots](docs/screenshots) include actual doubled-text reflow checks.
 
 ## Architecture, data and generation
 
@@ -179,6 +179,8 @@ The complete suite passes 61 automated tests, including compiled production star
 Final commands/results, fresh-clone evidence and blockers are in [Week 4 verification](docs/weeks/week-4/verification.md) and [handoff](docs/weeks/week-4/handoff.md). [Week 3 long PDFs](docs/weeks/week-3/verification.md), [Week 2 evidence](docs/weeks/week-2/verification.md), [Week 1 evidence](docs/weeks/week-1/verification.md) and [project status](docs/PROJECT_STATUS.json) remain available.
 
 ## Hosting setup — external verification pending
+
+Follow the [dashboard deployment steps](docs/DEPLOYMENT_QUICKSTART.md) to configure your existing Render service and Vercel project.
 
 Configuration is prepared for **Vercel frontend + Render backend**. There are no deployed URLs or account changes from this implementation.
 

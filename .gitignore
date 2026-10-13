@@ -8,6 +8,11 @@ coverage/
 .cache/
 test-results/
 playwright-report/
+.vercel/
+# Generated verification output; curated screenshots live in docs/screenshots.
+docs/weeks/*/screenshots/
+docs/weeks/week-3/pdf/*.png
+docs/weeks/week-3/pdf/long-mobile.pdf
 *.tsbuildinfo
 *.log
 .DS_Store

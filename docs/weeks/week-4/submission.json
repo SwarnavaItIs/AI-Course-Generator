@@ -25,7 +25,7 @@
     "readme": "README.md",
     "architecture": "docs/ARCHITECTURE.md",
     "deploymentRunbook": "docs/DEPLOYMENT.md",
-    "screenshots": "docs/weeks/week-4/screenshots",
+    "screenshots": "docs/screenshots",
     "resumeBullets": "docs/submission/resume-bullets.md",
     "fiveMinuteScriptAndShotList": "docs/submission/demo-script.md",
     "demoRecording": "BLOCKED: final narrated recording remains pending; no configured live application or recording setup. Browser fixture traces/screenshots are not a completed demo."

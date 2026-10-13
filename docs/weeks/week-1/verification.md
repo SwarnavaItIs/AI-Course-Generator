@@ -48,12 +48,11 @@ The external Auth0 redirect is simulated **only** in the separate test Vite conf
 
 Actual screenshots were inspected for welcome, saved library, course overview and lesson typography/layout. Capture timing was corrected so overview screenshots contain all modules and fixed navigation appears at the top. Representative files:
 
-- [Desktop public welcome](screenshots/desktop-public-welcome.png)
-- [Desktop saved library — explicit test learner](screenshots/desktop-library.png)
-- [Desktop course overview](screenshots/desktop-public-course.png)
-- [Mobile saved library — explicit test learner](screenshots/mobile-library.png)
-- [Mobile course overview](screenshots/mobile-public-course.png)
-- [Mobile lesson](screenshots/mobile-public-lesson.png)
+The original per-run captures are reproducible from the test/inspection commands above. After the 13 October cleanup, current curated examples are retained here:
+
+- [Public welcome](../../screenshots/desktop-public-welcome.png) and [mobile sample lesson](../../screenshots/mobile-public-lesson.png).
+- [Desktop saved library (explicit test learner)](../../screenshots/desktop-saved-library.png) and [mobile saved library](../../screenshots/mobile-saved-library.png).
+- [Later generated-course overview (explicit fixture)](../../screenshots/desktop-generated-course.png).
 
 This is browser/keyboard/visual verification, not a full WCAG certification or screen-reader audit.
 
