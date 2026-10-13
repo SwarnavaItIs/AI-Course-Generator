@@ -1,5 +1,7 @@
 # Text to Learn
 
+[![Verify Text to Learn](https://github.com/SwarnavaItIs/AI-Course-Generator/actions/workflows/ci.yml/badge.svg)](https://github.com/SwarnavaItIs/AI-Course-Generator/actions/workflows/ci.yml)
+
 A learning workspace for people who have a topic but need an ordered path through it. Text to Learn turns topic input into a validated saved course, generates lessons on demand, and keeps quizzes, readings, media and progress together. **Weeks 1–3 are complete locally; Week 4 verifies the full journey and prepares submission.** Live provider quality, actual tenant login and public deployments need external setup. The final submission is incomplete while those checks and the recorded demo are missing.
 
 ## What works
@@ -17,7 +19,7 @@ A learning workspace for people who have a topic but need an ordered path throug
 - MongoDB User/Course/Module/Lesson/Progress/GenerationJob/Enhancement/AudioAsset records, indexes, transactions and model/version-aware hashes.
 - Strict shared Zod contracts, startup configuration checks, health/readiness, CORS/request bounds/rate limits, safe error envelopes, npm workspaces, CI and deployment configuration.
 
-The project initially contained only the specification and inherited an unrelated parent Git repository. It now has a standalone repository and focused local commits on `codex/week-4-verification`. No remote, push, account change or deployment has been created. The original supplied prompt is preserved locally and excluded from agent commits.
+The project initially contained only the specification and inherited an unrelated parent Git repository. The verified project was published to [GitHub](https://github.com/SwarnavaItIs/AI-Course-Generator) on `main` on **13 October 2026**. [Hosted CI passed](https://github.com/SwarnavaItIs/AI-Course-Generator/actions/runs/38429060767), including static/build, API/browser and production-client fixture checks on Linux. `codex/week-4-verification` remains the local implementation branch. The original supplied prompt is preserved locally and excluded from agent commits. Frontend/backend deployment and actual tenant/provider verification still need private setup.
 
 ## Screenshots
 
@@ -180,13 +182,13 @@ Final commands/results, fresh-clone evidence and blockers are in [Week 4 verific
 
 Configuration is prepared for **Vercel frontend + Render backend**. There are no deployed URLs or account changes from this implementation.
 
-1. Connect this standalone project repository to GitHub when you choose to publish it. CI is in `.github/workflows/ci.yml` and installs the lockfile, checks formatting/lint/types/build, then runs local API/browser fixtures. Hosted CI has not been executed here.
+1. Import [the published GitHub repository](https://github.com/SwarnavaItIs/AI-Course-Generator), branch `main`, into the existing hosting accounts. CI is in `.github/workflows/ci.yml`; its [first hosted run passed](https://github.com/SwarnavaItIs/AI-Course-Generator/actions/runs/38429060767). It installs the lockfile, checks formatting/lint/types/build, then runs isolated API/browser and production-preview checks. These are separate from hosted application smoke.
 2. On Render, create the web service from `render.yaml` using this project root. Its build compiles contracts then server; its start command runs the server workspace and `/ready` is the health check. Set MONGODB_URI, AUTH0_DOMAIN, AUTH0_AUDIENCE and the exact Vercel origin in CLIENT_ORIGINS. Atlas network access must permit the Render service. Never put a database URI into the frontend.
 3. On Vercel, import the project with **repository root** as its root directory, Node 24, and `vercel.json`. The output is `client/dist`. Set all three VITE_AUTH0_* identifiers and VITE_API_URL to the Render **origin**, without `/api`. Rebuild when client environment changes. The SPA rewrite serves deep links while assets are served normally.
 4. Update the Auth0 callback/logout/origin lists with the exact Vercel HTTPS origin. Configure provider keys only on the backend when needed.
 5. Smoke-test both health endpoints; actual fresh-user login/logout; save/open/refresh a course and direct lesson link; User B denial; deletion; narrow-screen navigation. Record real URLs/results in the Week 4 submission manifest. Do not mark live acceptance complete until those checks are executed.
 
-The [deployment/update/recovery runbook](docs/DEPLOYMENT.md) gives exact production settings and external smoke actions. [Resume bullets](docs/submission/resume-bullets.md) and the [five-minute demo script/shot list](docs/submission/demo-script.md) are ready. Recording and real repository/frontend/backend/demo URLs remain pending; [submission.json](docs/weeks/week-4/submission.json) tracks them without invented links.
+The [deployment/update/recovery runbook](docs/DEPLOYMENT.md) gives exact production settings and external smoke actions. [Resume bullets](docs/submission/resume-bullets.md) and the [five-minute demo script/shot list](docs/submission/demo-script.md) are ready. Frontend/backend/demo URLs and recording remain pending; [submission.json](docs/weeks/week-4/submission.json) retains the real repository/CI links and outstanding checks. [GitHub delivery evidence](docs/delivery/2026-10-13-github.md) records publication and the bug-check results.
 
 ## Limitations and phase boundary
 

@@ -1,6 +1,6 @@
 # Production and update runbook
 
-Status on 6 October 2026: configuration is prepared and local production builds/entrypoint checks pass. **No GitHub remote, Vercel project, Render service, application Atlas database, actual Auth0 tenant or public URLs were available.** Hosted CI, public login/deep-link/persistence checks and final recording remain blocked. Nothing has been published or provisioned. Retain Vercel + Render + MongoDB replica set/GridFS; changing providers needs an explicit decision.
+Status on **13 October 2026**: the verified project is published to [GitHub](https://github.com/SwarnavaItIs/AI-Course-Generator), branch `main`, and [hosted CI passed](https://github.com/SwarnavaItIs/AI-Course-Generator/actions/runs/38429060767). No Vercel/Render login, client/server environment files or application/provider configuration is available locally; frontend/backend URLs and hosted application smoke remain pending. No hosting resources have been provisioned. The user has authorized deployment using the existing Vercel + Render + MongoDB replica set/GridFS design; changing providers still needs an explicit decision.
 
 ## Private configuration
 
@@ -31,7 +31,7 @@ Provider configuration is optional at startup: missing providers return controll
 
 ## Accounts and first deployment
 
-1. Publish the reviewed branch to an explicitly chosen GitHub repository only with authorization/access. Connect CI; keep the default branch consistent with the workflow's `main` trigger. PR and manual workflow triggers are available. No repository URL has been invented here.
+1. GitHub publication is complete at [SwarnavaItIs/AI-Course-Generator](https://github.com/SwarnavaItIs/AI-Course-Generator), default branch `main`. The first hosted CI run passed. PR and manual workflow triggers are also available. Import this repository into Vercel/Render once the intended accounts/projects and private configuration are available.
 2. Create an Auth0 SPA and RS256 API. Match the audience/domain on both sides. Add the exact frontend origin to Allowed Callback URLs, Allowed Logout URLs and Allowed Web Origins. Callback URI is the origin. Local origins are `http://localhost:5173` and `http://127.0.0.1:5173`; add preview origins individually. Enable an actual login connection and create two test accounts. The app requests `openid profile email` plus the configured audience and stores access tokens in memory.
 3. Provision or select a persistent MongoDB replica set/Atlas database with transactions, an application database user and network access for Render. Save the URI only on the server. Index creation needs permissions. Enable the database's backup/restore policy as appropriate and verify restoration in a separate database, without deleting production data. `lessonAudio.files`/`lessonAudio.chunks` are durable audio storage; no Render disk is used for audio. Local isolated test databases are not the application database.
 4. Import `render.yaml`. Build: `npm ci && npm run build -w @text-to-learn/contracts && npm run build -w @text-to-learn/server`. Start: `npm run start -w @text-to-learn/server`. Health path `/ready`. Complete environment values privately. The blueprint uses the existing free plan; confirm its current availability and sleep behavior before relying on timely generation. Sleeping/restarting suspends workers until the process resumes; database jobs persist. Choosing a different paid plan is an account decision, not a silent implementation change.
@@ -50,7 +50,7 @@ Limits remain 120 API requests/minute/IP, 16 KiB JSON, 100 courses/user, three a
 
 ## Reviewed update and rollback workflow
 
-Run `npm ci`, formatting/lint/types/build, `npm test`, browser checks and production preview checks on the reviewed source. CI runs the same critical checks on Linux with isolated MongoDB/JWKS/provider fixtures; it does not need live secrets. The workflow retains browser/a11y/production evidence for fourteen days. Local fresh-clone results are in the Week 4 verification record; hosted CI has not run without a remote.
+Run `npm ci`, formatting/lint/types/build, `npm test`, browser checks and production preview checks on the reviewed source. CI runs the same critical checks on Linux with isolated MongoDB/JWKS/provider fixtures; it does not need live secrets. The workflow retains browser/a11y/production evidence for fourteen days. Local fresh-clone results are in the Week 4 verification record; hosted CI also passed on 13 October, with its actual link in the submission manifest. This does not verify a Vercel/Render deployment or actual provider/tenant login.
 
 Commit only intended source/configuration/docs, inspect the diff for secrets and user work, and use a PR for review. Push/merge/publish only when authorized. Deploy the exact reviewed revision; record commit, environment, deployment URLs and smoke outcomes in `docs/weeks/week-4/submission.json`. Changing VITE_ values requires a frontend rebuild. Keep configured model/voice versions explicit and monitor provider quota/errors, readiness and queued/expired jobs. Logs show safe codes/request IDs, never raw provider bodies or credentials.
 

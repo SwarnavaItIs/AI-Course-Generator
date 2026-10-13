@@ -1,6 +1,6 @@
 {
   "currentPhase": 4,
-  "updatedOn": "2026-10-06",
+  "updatedOn": "2026-10-13",
   "weeks": {
     "1": {
       "engineering": "complete",
@@ -59,12 +59,18 @@
       "featureFreeze": "2026-10-06T08:26:22Z",
       "featureFreezeRevision": "f82d5f8",
       "acceptance": "submission_incomplete_external_assets_and_live_verification",
-      "hostedCiAndSmoke": "blocked_missing_remote_accounts_urls",
+      "hostedCiAndSmoke": "ci_pass_hosted_application_smoke_blocked",
       "actualAuth0AndApplicationPersistence": "blocked_missing_private_setup",
       "liveGenerationAndMediaQuality": "blocked_missing_provider_configuration",
       "recordedDemo": "pending_blocked_live_application_and_narrated_recording_access",
       "handoff": "docs/weeks/week-4/handoff.md",
-      "submissionManifest": "docs/weeks/week-4/submission.json"
+      "submissionManifest": "docs/weeks/week-4/submission.json",
+      "githubCi": {
+        "status": "PASS",
+        "url": "https://github.com/SwarnavaItIs/AI-Course-Generator/actions/runs/38429060767",
+        "sourceRevision": "f32a825c54f0dd3aa5b105acdf271571a8691db3",
+        "checkedOn": "2026-10-13"
+      }
     }
   },
   "externalDependencies": [
@@ -72,18 +78,24 @@
     "Configured persistent MongoDB replica set or Atlas database for actual app use",
     "Week 2: backend GEMINI_API_KEY and a supported structured-output GEMINI_TEXT_MODEL",
     "Week 3: supported GEMINI_TTS_MODEL and YOUTUBE_API_KEY with YouTube Data API v3 enabled",
-    "GitHub repository connection, Vercel/Render projects and deployment authorization/access",
+    "Vercel/Render account/project access and private production configuration",
     "Actual provider/tenant/hosted verification followed by a final five-minute narrated demo recording"
   ],
-  "nextConcreteTask": "Stopped at the Week 4 feature-frozen boundary after all available local checks and fresh-clone verification passed. Follow docs/DEPLOYMENT.md for private Auth0/Atlas/provider configuration and authorized GitHub/Vercel/Render setup; execute actual hosted/live/CI/update checks and record the demo before marking full submission complete.",
+  "nextConcreteTask": "GitHub main is published and hosted CI passed. Deployment is authorized but requires the intended Vercel/Render projects/login and private Auth0/Atlas/provider configuration. Follow docs/DEPLOYMENT.md, deploy with that access, and execute actual hosted/live smoke before marking submission complete.",
   "git": {
     "standaloneRepository": true,
     "baselineCommit": "23e2194",
-    "branch": "codex/week-4-verification",
+    "branch": "main",
     "verifiedSourceRevision": "1deabe64f052f5a729d75b241558a4eb5b3ddd5a",
-    "remoteConfigured": false,
+    "remoteConfigured": true,
     "commitsCreated": true,
-    "pushMergeDeploymentPerformed": false,
-    "userSuppliedPrompt": "preserved_untracked_excluded_from_agent_commits"
+    "userSuppliedPrompt": "preserved_untracked_excluded_from_agent_commits",
+    "implementationBranch": "codex/week-4-verification",
+    "remoteUrl": "https://github.com/SwarnavaItIs/AI-Course-Generator.git",
+    "publishedOn": "2026-10-13",
+    "initialPublishedRevision": "f32a825c54f0dd3aa5b105acdf271571a8691db3",
+    "pushPerformed": true,
+    "mergePerformed": false,
+    "deploymentPerformed": false
   }
 }

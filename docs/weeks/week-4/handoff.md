@@ -1,6 +1,6 @@
 # Week 4 handoff — 6 October 2026
 
-Week 3 completed locally before Week 4 began. Week 4 local implementation, available verification and submission preparation are complete and feature-frozen. **The entire submission is not complete:** public repository/frontend/backend/demo URLs, hosted CI/login/persistence/update smoke and live provider quality remain absent or blocked. Stop at Week 4; complete external delivery against the existing runbook without expanding features.
+Week 3 completed locally before Week 4 began. Week 4 local implementation, available verification and submission preparation are complete and feature-frozen. **Delivery update, 13 October:** the user authorized publication; [GitHub main is published](https://github.com/SwarnavaItIs/AI-Course-Generator) and [hosted CI passed](https://github.com/SwarnavaItIs/AI-Course-Generator/actions/runs/38429060767). The entire submission remains incomplete: frontend/backend/demo URLs, actual hosted login/persistence/update smoke and live provider quality still need external setup. Continue authorized external delivery against the runbook without expanding features.
 
 ## Delivered and reused
 
@@ -8,7 +8,7 @@ Reviewed all earlier specs/handoffs/evidence and the actual UI → verified owne
 
 Repaired Auth0 callback return paths (including backslashes/control/non-string values), fatal startup cleanup and HTTP-bind sequencing, concurrent shutdown/worker abort, and concrete contrast failures. Added three compiled production lifecycle checks, callback-state tests, axe plus keyboard/dialog/navigation/reflow journeys, measured localhost cache observations and built normal-client smoke using the real SDK. Quotas/deadlines/retries/ownership remain enforced. Main features were frozen at Day 24 equivalent `f82d5f8`; `1deabe6` only corrects transient-selector text-scaling verification after repeated runs exposed it.
 
-Prepared exact Auth0/env/CORS/Atlas/GridFS/Render/Vercel/readiness/SPA/update/rollback instructions in `docs/DEPLOYMENT.md`, CI manual trigger/evidence upload, README problem/features/screenshots/architecture/model/pipeline/env/API/results/limitations, accurate resume bullets and a timed five-minute demo script/shot list. No account change/push/merge/deployment/recorded demo was performed. Baseline `23e2194` and focused fixes are local on `codex/week-4-verification`; the user's original prompt remains untouched and untracked, outside agent commits.
+Prepared exact Auth0/env/CORS/Atlas/GridFS/Render/Vercel/readiness/SPA/update/rollback instructions in `docs/DEPLOYMENT.md`, CI manual trigger/evidence upload, README problem/features/screenshots/architecture/model/pipeline/env/API/results/limitations, accurate resume bullets and a timed five-minute demo script/shot list. At the 6 October local handoff no publication had occurred. On 13 October the same verified source/history was pushed normally to the user's empty GitHub repository; local `main` tracks `origin/main`, and the implementation branch is preserved. No merge, force push, hosting deployment or recorded demo was performed. The user's original prompt remains untouched and untracked, outside agent commits.
 
 ## Verification
 
