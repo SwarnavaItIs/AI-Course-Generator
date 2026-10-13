@@ -40,7 +40,7 @@ await check('Gemini TTS', ['GEMINI_API_KEY', 'GEMINI_TTS_MODEL'], () =>
 await check('YouTube search', ['YOUTUBE_API_KEY'], () =>
   probeYouTube(process.env.YOUTUBE_API_KEY!),
 );
-const directory = fileURLToPath(new URL('../../../docs/weeks/week-1/', import.meta.url));
+const directory = fileURLToPath(new URL('../../../artifacts/providers/', import.meta.url));
 await mkdir(directory, { recursive: true });
 const report = {
   checkedAt: new Date().toISOString(),

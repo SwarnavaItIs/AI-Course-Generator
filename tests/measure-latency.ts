@@ -120,8 +120,8 @@ try {
     },
     pollIntervalMs: 100,
   };
-  await mkdir('docs/weeks/week-4', { recursive: true });
-  await writeFile('docs/weeks/week-4/latency.json', `${JSON.stringify(report, null, 2)}\n`);
+  await mkdir('artifacts', { recursive: true });
+  await writeFile('artifacts/latency.json', `${JSON.stringify(report, null, 2)}\n`);
   console.info(JSON.stringify(report, null, 2));
 } finally {
   await generation.stop();

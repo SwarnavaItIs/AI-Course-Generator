@@ -11,9 +11,9 @@ test('public sample supports deep links, quiz feedback and accessible mobile nav
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Follow your curiosity.' })).toBeVisible();
-  await mkdir('docs/weeks/week-1/screenshots', { recursive: true });
+  await mkdir('artifacts/screenshots/sample', { recursive: true });
   await page.screenshot({
-    path: `docs/weeks/week-1/screenshots/${testInfo.project.name}-welcome.png`,
+    path: `artifacts/screenshots/sample/${testInfo.project.name}-welcome.png`,
     fullPage: true,
   });
   await page.getByRole('link', { name: 'Explore the sample', exact: true }).click();
@@ -31,7 +31,7 @@ test('public sample supports deep links, quiz feedback and accessible mobile nav
   await page.getByRole('radio', { name: 'The web browser', exact: true }).check();
   await expect(page.getByRole('status').filter({ hasText: 'That’s right.' })).toBeVisible();
   await page.screenshot({
-    path: `docs/weeks/week-1/screenshots/${testInfo.project.name}-lesson.png`,
+    path: `artifacts/screenshots/sample/${testInfo.project.name}-lesson.png`,
     fullPage: true,
   });
   await page.getByRole('link', { name: 'UP NEXT Give content a meaningful structure' }).click();
@@ -83,7 +83,7 @@ test('signed-in library saves, refreshes, navigates and deletes persistent cours
     page.getByRole('heading', { name: `My ${testInfo.project.name} learning path` }),
   ).toBeVisible();
   await page.screenshot({
-    path: `docs/weeks/week-1/screenshots/${testInfo.project.name}-library.png`,
+    path: `artifacts/screenshots/sample/${testInfo.project.name}-library.png`,
     fullPage: true,
   });
   await page.goto(courseUrl);

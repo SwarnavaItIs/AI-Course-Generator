@@ -1,6 +1,4 @@
-# API contract — Week 4
-
-Week 4 keeps the Week 3 domain schemas and routes. Production now binds before starting workers and closes MongoDB on fatal startup; Auth0 return paths reject external/malformed callback state. Deployment/cache/limit guarantees and local versus hosted evidence are documented in `DEPLOYMENT.md` and the Week 4 verification record.
+# API reference
 
 JSON uses the schemas in `packages/contracts/src/index.ts`. All domain IDs are UUIDs; positions only control ordering. API error responses have `{ "error": { "code": "…", "message": "…", "requestId": "…" } }`, and `X-Request-Id` is set. Never send owner/user IDs as input. Another owner's records return the same 404 as nonexistent records.
 
@@ -18,9 +16,15 @@ JSON uses the schemas in `packages/contracts/src/index.ts`. All domain IDs are U
 | POST `/api/courses/:courseId/retry`                      | Bearer + parent ownership               | 202 while generating, otherwise 200 `{course}`                                         |
 | POST `/api/courses/:courseId/lessons/:lessonId/generate` | Bearer + ready parent/module ownership  | 202 while generating, otherwise 200 `{lesson}`                                         |
 
-Sample create body remains `{ "templateId": "web-foundations", "title": "Optional custom title" }`, returning 201. Optional trimmed title is 3–120 characters. Topic create body is `{ "topic": "Python for beginners", "requestId": "client-generated UUID" }`; trimmed topic is 3–300 characters. Topic POST returns 202 with a persisted pending course and Location, or 200 when that request already has a ready course. Unknown fields, including ownership, are rejected. A unique owner/requestId index prevents duplicate creation. Reuse the same UUID when retrying an uncertain submission; a changed topic with that UUID returns 409 REQUEST_CONFLICT. Deleting the course removes its request record, permitting subsequent reuse of that UUID.
+## Create a course
+
+Sample create body is `{ "templateId": "web-foundations", "title": "Optional custom title" }`, returning 201. Optional trimmed title is 3–120 characters. Topic create body is `{ "topic": "Python for beginners", "requestId": "client-generated UUID" }`; trimmed topic is 3–300 characters. Topic POST returns 202 with a persisted pending course and Location, or 200 when that request already has a ready course. Unknown fields, including ownership, are rejected. A unique owner/requestId index prevents duplicate creation. Reuse the same UUID when retrying an uncertain submission; a changed topic with that UUID returns 409 REQUEST_CONFLICT. Deleting the course removes its request record, permitting subsequent reuse of that UUID.
+
+## Generation and retries
 
 Course retry body is `{}` (the shared request schema also permits an optional retry boolean). Lesson generation body is `{}` or `{ "retry": true }`. Ready lessons return cached content without invoking Gemini. Queued/running requests return the existing target/job. Failed lessons remain failed unless retry is true. Course retry queues a failed job; ready/generating courses remain unchanged. Attempt counters never reset. The limits are three queued/running jobs per owner and 100 courses. UI polling uses GET every two seconds for up to five minutes per load, then leaves Check status available. GET does not initiate provider work.
+
+## Response schemas
 
 CourseSummary: id, title, description, tags, isSample, generationState, moduleCount, lessonCount, completedLessonCount, ISO createdAt/updatedAt and optional generation info. CourseDetail adds ordered modules and completedLessonIds. Ready courses have 3–6 modules, 3–5 lessons/module and 9–30 total lessons. Pending/failed outlines have zero counts and an empty modules array. Detail validation enforces unique IDs, parent references, contiguous zero-based positions, matching counts and completion references. Every generated outline lesson has IDs, title/description, objectives (1–8), keyTopics (1–10), resources (1–8) and generationState. Outline readiness means metadata is ready; its lessons initially have not_started content.
 
@@ -28,13 +32,15 @@ Lesson adds contentVersion, nullable SHA-256 contentHash, nullable content and o
 
 Generation info: `{attempts:0..4,maxAttempts:4,canRetry:boolean,error:{code,message}|null}`. Errors appear only for failed jobs. Initial automatic attempts stop at two; manual retry permits remaining attempts up to four total. Nonretryable provider/configuration errors can stop automatic attempts early. Recovery consumes the same bound. Internal job leases/tokens, owners, model metadata and raw provider errors are omitted from API JSON; poll the owned course/lesson.
 
-Resources have title, nullable HTTPS url and source (`catalogue` or `unverified_suggestion`). Provider drafts accept only `{catalogueId:string|null,title}`. Unknown IDs are rejected; accepted IDs resolve to the server catalogue's own title/URL; unresolved suggestions get url:null. Generated URLs are rejected as unknown fields and never fetched. Week 3 video search uses lesson videoQueries; saved authored samples use a bounded title/topic query.
+Resources have title, nullable HTTPS url and source (`catalogue` or `unverified_suggestion`). Provider drafts accept only `{catalogueId:string|null,title}`. Unknown IDs are rejected; accepted IDs resolve to the server catalogue's own title/URL; unresolved suggestions get url:null. Generated URLs are rejected as unknown fields and never fetched. Video search uses lesson videoQueries; saved authored samples use a bounded title/topic query.
 
 States: `not_started`, `generating`, `ready`, `failed`. Topic submission persists generating immediately. Complete validation and fenced transactions publish ready; invalid output and partial writes never become ready. Sample copies remain authored and get fresh IDs; public IDs do not grant saved-copy access. Deleting parent/jobs atomically prevents orphan publication.
 
+## Errors
+
 Errors: 400 invalid input/IDs/JSON, 401 invalid token, 403 unapproved origin, 404 missing/not-owned, 409 COURSE_LIMIT / REQUEST_CONFLICT / RETRY_LIMIT, 413 oversized body, 429 RATE_LIMITED / GENERATION_LIMIT, 503 database/provider configuration unavailable, 500 safe internal error. Accepted upstream failures appear as persisted generation errors, not synthetic success or raw exceptions. Personal responses use no-store; lesson reuse is a database cache. Rate-limit headers expose reset information; readiness omits database details.
 
-## Week 3 owned lesson endpoints
+## Lesson tools and progress
 
 All paths below start with `/api/courses/:courseId/lessons/:lessonId`; UUID/parent/module/ready lesson checks apply and only verified sub supplies ownership. Request bodies are strict; ownership, model, voice and arbitrary URLs cannot be supplied by clients.
 

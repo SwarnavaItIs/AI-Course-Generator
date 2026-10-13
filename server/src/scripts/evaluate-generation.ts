@@ -11,7 +11,7 @@ import {
 const missing = ['GEMINI_API_KEY', 'GEMINI_TEXT_MODEL'].filter(
   (name) => !process.env[name]?.trim(),
 );
-const directory = fileURLToPath(new URL('../../../docs/weeks/week-2/', import.meta.url));
+const directory = fileURLToPath(new URL('../../../artifacts/generation/', import.meta.url));
 const provider = new GeminiGenerationProvider(process.env);
 const results: unknown[] = [];
 let failed = false;

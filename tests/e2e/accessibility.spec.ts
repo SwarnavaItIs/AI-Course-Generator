@@ -9,9 +9,9 @@ async function audit(page: Page, name: string, project: string) {
   const result = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
     .analyze();
-  await mkdir('docs/weeks/week-4/accessibility', { recursive: true });
+  await mkdir('artifacts/accessibility', { recursive: true });
   await writeFile(
-    `docs/weeks/week-4/accessibility/${project}-${name}.json`,
+    `artifacts/accessibility/${project}-${name}.json`,
     `${JSON.stringify({ url: new URL(page.url()).pathname, viewport: page.viewportSize(), engine: result.testEngine, status: result.violations.length ? 'FAIL' : 'PASS', violations: result.violations, incomplete: result.incomplete.map((item) => ({ id: item.id, targets: item.nodes.map((node) => node.target) })), passedRules: result.passes.length }, null, 2)}\n`,
   );
   expect
@@ -135,9 +135,9 @@ test('lesson reflows at narrow/tablet widths and 200 percent text sizing with re
     .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
     .toBe(true);
   await expect(page.getByRole('button', { name: 'Export lesson PDF' })).toBeVisible();
-  await mkdir('docs/weeks/week-4/screenshots', { recursive: true });
+  await mkdir('artifacts/screenshots/production', { recursive: true });
   await page.screenshot({
-    path: `docs/weeks/week-4/screenshots/${testInfo.project.name}-reflow.png`,
+    path: `artifacts/screenshots/production/${testInfo.project.name}-reflow.png`,
     fullPage: true,
   });
 });

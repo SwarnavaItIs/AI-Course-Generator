@@ -43,7 +43,7 @@ try {
   expect(html).toContain('/assets/');
   expect(html).not.toContain('/src/main');
   browser = await chromium.launch();
-  await mkdir('docs/weeks/week-4/screenshots', { recursive: true });
+  await mkdir('artifacts/screenshots/production', { recursive: true });
   for (const [name, width, height] of [
     ['desktop', 1440, 1000],
     ['mobile', 390, 844],
@@ -57,7 +57,7 @@ try {
       page.getByText('Sign-in is currently unavailable. The sample is open for you to explore.'),
     ).toBeVisible();
     await page.screenshot({
-      path: `docs/weeks/week-4/screenshots/${name}-production-welcome.png`,
+      path: `artifacts/screenshots/production/${name}-production-welcome.png`,
       fullPage: true,
     });
     await page.goto(`${origin}/sample`);
@@ -72,7 +72,7 @@ try {
       true,
     );
     await page.screenshot({
-      path: `docs/weeks/week-4/screenshots/${name}-production-lesson.png`,
+      path: `artifacts/screenshots/production/${name}-production-lesson.png`,
       fullPage: true,
     });
     await page.goto(`${origin}/library`);
@@ -106,7 +106,7 @@ try {
     status: 'PASS',
     results,
   };
-  await writeFile('docs/weeks/week-4/production-ui.json', `${JSON.stringify(report, null, 2)}\n`);
+  await writeFile('artifacts/production-ui.json', `${JSON.stringify(report, null, 2)}\n`);
   console.info(JSON.stringify(report, null, 2));
 } finally {
   await browser?.close();

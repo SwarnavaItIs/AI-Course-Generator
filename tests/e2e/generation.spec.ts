@@ -17,15 +17,15 @@ test('topic generation persists rich lessons, quizzes and cached reopening', asy
   await page.goto('/library');
   await page.getByRole('button', { name: 'Sign in to continue' }).click();
   await page.getByLabel('Learning topic').fill('Python for beginners');
-  await mkdir('docs/weeks/week-2/screenshots', { recursive: true });
+  await mkdir('artifacts/screenshots/generation', { recursive: true });
   await page.screenshot({
-    path: `docs/weeks/week-2/screenshots/${testInfo.project.name}-topic.png`,
+    path: `artifacts/screenshots/generation/${testInfo.project.name}-topic.png`,
     fullPage: true,
   });
   await page.getByRole('button', { name: 'Generate course', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Preparing your course…' })).toBeVisible();
   await page.screenshot({
-    path: `docs/weeks/week-2/screenshots/${testInfo.project.name}-pending.png`,
+    path: `artifacts/screenshots/generation/${testInfo.project.name}-pending.png`,
     fullPage: true,
   });
   await expect(
@@ -42,7 +42,7 @@ test('topic generation persists rich lessons, quizzes and cached reopening', asy
     .scrollIntoViewIfNeeded();
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.screenshot({
-    path: `docs/weeks/week-2/screenshots/${testInfo.project.name}-course.png`,
+    path: `artifacts/screenshots/generation/${testInfo.project.name}-course.png`,
     fullPage: true,
   });
   await page.getByRole('link', { name: 'Start learning' }).click();
@@ -61,7 +61,7 @@ test('topic generation persists rich lessons, quizzes and cached reopening', asy
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
   await expect(page.getByRole('link', { name: 'Course overview', exact: true })).toBeInViewport();
   await page.screenshot({
-    path: `docs/weeks/week-2/screenshots/${testInfo.project.name}-lesson.png`,
+    path: `artifacts/screenshots/generation/${testInfo.project.name}-lesson.png`,
     fullPage: true,
   });
   const initialRequests = lessonRequests;
@@ -115,7 +115,7 @@ test('invalid generation shows a controlled retry and becomes a saved valid cour
   await expect(page.getByRole('alert')).toContainText('2 of 4 attempts used');
   await expect(page.getByRole('link', { name: 'Start learning' })).toHaveCount(0);
   await page.screenshot({
-    path: `docs/weeks/week-2/screenshots/${testInfo.project.name}-failure.png`,
+    path: `artifacts/screenshots/generation/${testInfo.project.name}-failure.png`,
     fullPage: true,
   });
   await page.reload();

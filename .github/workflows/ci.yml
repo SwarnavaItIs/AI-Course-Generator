@@ -35,9 +35,6 @@ jobs:
           path: |
             playwright-report/
             test-results/
-            docs/weeks/week-4/accessibility/
-            docs/weeks/week-4/production-ui.json
-            docs/weeks/*/screenshots/
-            docs/weeks/week-3/pdf/
+            artifacts/
           if-no-files-found: ignore
           retention-days: 14

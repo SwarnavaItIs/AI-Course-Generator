@@ -29,7 +29,7 @@ test('videos, Hinglish, real WAV playback/download, PDF and persistent progress 
   page.on('request', (call) => {
     if (call.method() === 'POST' && /\/enhancements\//.test(call.url())) posts++;
   });
-  await savedSample(page, `Week 3 ${testInfo.project.name}`);
+  await savedSample(page, `Lesson tools ${testInfo.project.name}`);
   await page.getByRole('button', { name: 'Find videos', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Fixture learning video' })).toBeVisible();
   await expect(page.getByText('Test channel', { exact: true })).toBeVisible();
@@ -68,9 +68,9 @@ test('videos, Hinglish, real WAV playback/download, PDF and persistent progress 
   expect(audioBytes.length).toBe(48044);
   await page.getByRole('button', { name: 'Mark lesson complete' }).click();
   await expect(page.getByText('1 of 9 lessons completed', { exact: false })).toBeVisible();
-  await mkdir('docs/weeks/week-3/screenshots', { recursive: true });
+  await mkdir('artifacts/screenshots/enhancements', { recursive: true });
   await page.screenshot({
-    path: `docs/weeks/week-3/screenshots/${testInfo.project.name}-enhancements.png`,
+    path: `artifacts/screenshots/enhancements/${testInfo.project.name}-enhancements.png`,
     fullPage: true,
   });
   const lessonUrl = page.url();
@@ -87,7 +87,7 @@ test('videos, Hinglish, real WAV playback/download, PDF and persistent progress 
   expect((await readFile((await pdf.path())!)).subarray(0, 5).toString()).toBe('%PDF-');
   await page.goto('/library');
   await expect(
-    page.locator('.course-card').filter({ hasText: `Week 3 ${testInfo.project.name}` }),
+    page.locator('.course-card').filter({ hasText: `Lesson tools ${testInfo.project.name}` }),
   ).toContainText('1 of 9');
   await page.goto(lessonUrl);
   await expect(page.getByRole('button', { name: 'Mark as incomplete' })).toBeVisible();
@@ -131,7 +131,7 @@ test('long PDF has page-sized captures, every source character, readable wrapped
 }, testInfo) => {
   test.setTimeout(180_000);
   await page.goto('/sample');
-  const directory = 'docs/weeks/week-3/pdf';
+  const directory = 'artifacts/pdf';
   await mkdir(directory, { recursive: true });
   const downloaded = page.waitForEvent('download');
   const manifest = await page.evaluate(

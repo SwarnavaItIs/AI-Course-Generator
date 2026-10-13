@@ -19,7 +19,7 @@ const provider = new GoogleEnhancementProvider({
   ...process.env,
   GEMINI_TTS_VOICE: supportedVoiceSchema.parse(process.env.GEMINI_TTS_VOICE),
 });
-const directory = 'docs/weeks/week-3';
+const directory = 'artifacts/enhancements';
 await mkdir(`${directory}/live-audio`, { recursive: true });
 const missingFor = (kind: EnhancementKind) =>
   (kind === 'videos'
@@ -107,7 +107,7 @@ for (const [index, fixture] of evaluationCases.entries()) {
   }
   results.push({
     topic: fixture.topic,
-    source: 'authored_week2_evaluation_lesson',
+    source: 'authored_evaluation_lesson',
     lessonTitle: lesson.title,
     checks,
     reviewTerms:

@@ -23,15 +23,15 @@ const results = evaluationCases.map((fixture) => {
       .length,
   };
 });
-await mkdir('docs/weeks/week-2', { recursive: true });
+await mkdir('artifacts/generation', { recursive: true });
 const report = {
   checkedAt: new Date().toISOString(),
   scope:
-    'Authored deterministic fixtures, not live Gemini quality. All three also run through the production API/worker/persistence in generation.test.ts. Manual content review is in evaluation.md.',
+    'Deterministic fixtures; live Gemini quality requires separate review. Integration coverage is in generation.test.ts and content review is in docs/testing.md.',
   results,
 };
 await writeFile(
-  'docs/weeks/week-2/evaluation-fixtures.json',
+  'artifacts/generation/evaluation-fixtures.json',
   `${JSON.stringify(report, null, 2)}\n`,
 );
 console.info(JSON.stringify(report, null, 2));

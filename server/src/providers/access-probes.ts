@@ -1,7 +1,7 @@
 import { GoogleGenAI } from '@google/genai';
 import { z } from 'zod';
 
-// Week 1 access probes only. Course/lesson generation belongs to Week 2.
+// Lightweight access checks; full generation is evaluated separately.
 export class GeminiAccessProbes {
   private readonly client: GoogleGenAI;
   constructor(apiKey: string) {
