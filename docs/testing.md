@@ -75,7 +75,32 @@ For live output, review the full progression, factual claims, resource relevance
 
 ## Observed cache timings
 
-A local run on 13 October 2026, with provider fixtures delayed by 150 ms, measured a 40.52 ms median topic enqueue, 1.16 s outline completion and 1.20 s first-lesson completion across five samples. Twenty cached lesson reads had an 8.32 ms median; twenty cached enhancement reads had a 12.39 ms median. Browser tests were running on the same machine. Provider call counts did not increase during cached reads. These are local observations, not live-provider latency or a service guarantee. Use `measure:latency` to repeat the measurement.
+A local run on 29 October 2026, with provider fixtures delayed by 150 ms, measured a 54.96 ms median topic enqueue, 1.17 s outline completion and 1.17 s first-lesson completion across five samples. Twenty cached lesson reads had a 6.76 ms median; twenty cached enhancement reads had a 21.83 ms median. Browser checks and a clean installation were running on the same machine. Provider call counts did not increase during cached reads. These are local observations, not live-provider latency or a service guarantee. Use `measure:latency` to repeat the measurement.
+
+## Acceptance audit — 29 October 2026
+
+The audit compared the local master specification against the actual contracts, UI, API, database models, workers, storage, tests and hosting configuration. The starting revision was `12c90ef`, with a clean working tree. The product code already covered the requested local features. The remaining repository gaps were the missing demo materials and the README's abbreviated architecture, data and API sections; those are now completed. The concise documentation layout replaces the original weekly planning files, as requested.
+
+| Requirement                                                    | Result                           | Evidence and boundary                                                                                                               |
+| -------------------------------------------------------------- | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Auth0 integration, access tokens and owned records             | PASS locally; live login BLOCKED | `api.test.ts`, `enhancements.test.ts` and browser fixtures; real tenant configuration absent                                        |
+| Saved course CRUD, stable IDs and transaction cleanup          | PASS                             | `api.test.ts`, `lifecycle.test.ts`; isolated database reconnect and production-process restart                                      |
+| Validated topic outlines, lesson metadata and rich content     | PASS with fixtures               | `contracts.test.ts`, `generation.test.ts`, `e2e/generation.spec.ts`; counts, quizzes, resources and ordering checked                |
+| Durable jobs, duplicate protection, bounded retries and caches | PASS                             | `generation.test.ts`, `enhancements.test.ts`; invalid output, expired leases, late publication and repeated requests                |
+| Videos, Hinglish, audio and independent failures               | PASS with fixtures               | `enhancement-provider.test.ts`, `enhancements.test.ts`, `e2e/enhancements.spec.ts`; live quality and pronunciation BLOCKED          |
+| Persistent owned audio, size/format checks and cleanup         | PASS                             | Actual isolated GridFS writes, reconnects, authenticated byte ranges, WAV decoding/playback/download and interrupted-upload cleanup |
+| Full lesson PDF and persistent completion                      | PASS                             | Desktop/mobile eleven-page export coverage and visual review; repeated/concurrent completion and library refresh                    |
+| Responsive UI, accessibility and request/generation limits     | PASS for tested states           | 24 browser journeys, 16 axe reports without violations, keyboard/dialog checks, 200% text sizing and API limits                     |
+| Technical, nontechnical and broad-topic evaluation             | PASS for fixtures; live BLOCKED  | Three-topic evaluation above; provider scripts identify missing key/model settings                                                  |
+| Production configuration, readiness and restart recovery       | PASS locally; hosted BLOCKED     | Compiled entrypoint tests, Vite production preview, Render/Vercel configs and deployment guide                                      |
+| README, GitHub CI, demo script, shot list and résumé bullets   | Implemented                      | [README](../README.md), [workflow](../.github/workflows/ci.yml), [demo guide](demo.md)                                              |
+| Public application and narrated five-minute recording          | BLOCKED                          | No deployment or configured live journey; no recording produced                                                                     |
+
+Executed in the main checkout: `format:check`, `lint`, `typecheck`, `build`, `test` (61 passed in nine files), `test:e2e` (24 passed), `inspect:production`, `evaluate:fixtures` (three topics passed), and `measure:latency` all passed. `check:providers`, `evaluate:live` and `evaluate:enhancements` returned configuration blockers. No live check is counted as a pass.
+
+A separate clean clone of `e8e02e4` installed 471 packages with `npm ci --offline` from the local npm cache. It then passed formatting, lint, type checks, build, all 61 tests and the production preview. Node 24.16.0 and npm 11.13.0 were used. The clone had its own dependencies; only the MongoDB and Chromium executables were reused from local caches. This checks setup from the lockfile without application credentials. Docker Compose startup was BLOCKED because the Docker daemon was unavailable.
+
+The [current Google text](https://ai.google.dev/gemini-api/docs/structured-output) and [speech](https://ai.google.dev/gemini-api/docs/speech-generation) guides were checked against the provider request shapes. This verifies the documented integration pattern, not access to a configured Google project.
 
 ## Still to verify externally
 
