@@ -66,6 +66,50 @@ Topic submission saves a pending course and a job in MongoDB. A worker requests 
 
 Jobs have attempt limits and expiring leases so they can recover after a restart. Concurrent requests share existing work, and only the current worker can publish a result. Video, transcript and audio jobs run independently, so a failed tool leaves the lesson usable.
 
+```mermaid
+flowchart LR
+  Web[React client] -->|Access token| API[Express API]
+  Auth[Auth0] -->|Verified subject| API
+  API --> DB[(MongoDB replica set)]
+  Worker[Leased workers] <--> DB
+  Worker --> Gemini[Gemini text and speech]
+  Worker --> YouTube[YouTube search]
+  Worker --> Audio[(GridFS audio)]
+  API --> Audio
+  Web --> PDF[Browser PDF export]
+```
+
+### Data model
+
+| Record             | Stores                                                                        |
+| ------------------ | ----------------------------------------------------------------------------- |
+| User, Course       | Auth0 subject, owned library, topic and generation state                      |
+| Module, Lesson     | Ordered curriculum, objectives, resources, validated blocks and quizzes       |
+| Progress           | One completion set per user and course                                        |
+| GenerationJob      | Unique target, attempt count, retry time and expiring worker lease            |
+| Enhancement        | Cached videos, transcript or audio variant keyed by source and model settings |
+| AudioAsset, GridFS | Owned audio metadata, durable bytes and cleanup state                         |
+
+Course creation, publication and deletion use transactions. Every private child operation checks the parent course's owner; another user's records return 404.
+
+### API overview
+
+Private routes require a Bearer access token. Bodies and responses use the shared schemas.
+
+| Method and route                                                                      | Purpose                                                 |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| `GET /health`, `GET /ready`                                                           | Liveness and database readiness                         |
+| `GET /api/sample`                                                                     | Public sample course                                    |
+| `GET /api/courses`, `POST /api/courses`                                               | Read the owned library; save a sample or submit a topic |
+| `GET /api/courses/:courseId`, `DELETE /api/courses/:courseId`                         | Read or delete an owned course                          |
+| `POST /api/courses/:courseId/retry`                                                   | Retry a failed outline within the attempt limit         |
+| `GET …/lessons/:lessonId`, `POST …/lessons/:lessonId/generate`                        | Read saved lesson content or request generation         |
+| `GET …/lessons/:lessonId/enhancements`, `POST …/lessons/:lessonId/enhancements/:kind` | Read or request videos, transcript and audio            |
+| `GET …/lessons/:lessonId/audio/:assetId`                                              | Read owned WAV bytes                                    |
+| `POST …/lessons/:lessonId/completion`                                                 | Set completion without double-counting                  |
+
+The abbreviated routes continue from `/api/courses/:courseId`. See the [API reference](docs/api.md) for request examples, states and errors.
+
 ## Project layout
 
 ```text
@@ -97,6 +141,7 @@ Tests use isolated MongoDB, signed test tokens and provider fixtures. They cover
 - [API reference](docs/api.md)
 - [Deploy on Vercel and Render](docs/deployment.md)
 - [Testing and evaluation](docs/testing.md)
+- [Demo script, shot list and résumé bullets](docs/demo.md)
 - [Screenshots](docs/screenshots/README.md)
 
 ## Limitations
