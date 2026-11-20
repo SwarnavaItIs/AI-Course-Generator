@@ -30,7 +30,7 @@ The first run downloads test MongoDB and Chromium binaries. GitHub Actions runs 
 | Accessibility       | axe scans, keyboard navigation, dialogs, narrow/tablet layouts and 200% text sizing                                |
 | Production build    | Real SDK configuration state, public routes and local deep-link refresh                                            |
 
-The baseline suite has 61 automated tests and 24 desktop/mobile browser journeys. Accessibility scans found no violations in the tested states; manual screen-reader testing remains outstanding.
+The suite has 67 automated tests and 28 desktop/mobile browser journeys. Accessibility scans found no violations in the tested states. Manual screen-reader testing remains outstanding.
 
 Audio fixtures use a one-second PCM16 WAV tone. Tests verify storage, decoding, playback and download, but a tone cannot establish speech pronunciation.
 
@@ -101,6 +101,14 @@ Executed in the main checkout: `format:check`, `lint`, `typecheck`, `build`, `te
 A separate clean clone of `e8e02e4` installed 471 packages with `npm ci --offline` from the local npm cache. It then passed formatting, lint, type checks, build, all 61 tests and the production preview. Node 24.16.0 and npm 11.13.0 were used. The clone had its own dependencies; only the MongoDB and Chromium executables were reused from local caches. This checks setup from the lockfile without application credentials. Docker Compose startup was BLOCKED because the Docker daemon was unavailable.
 
 The [current Google text](https://ai.google.dev/gemini-api/docs/structured-output) and [speech](https://ai.google.dev/gemini-api/docs/speech-generation) guides were checked against the provider request shapes. This verifies the documented integration pattern, not access to a configured Google project.
+
+## Deployment readiness review — 20 November 2026
+
+The review fixed failed audio reads, invalid saved data responses, and startup messages that hid port or database configuration problems. The browser now handles unexpected API responses, keeps progress updates independent of media requests, and can display plain code if highlighting fails to load. Gemini requests use explicit deadlines and provider-compatible schemas. Video search preserves result order and reports quota failures.
+
+A clean checkout installed the patched lockfile and built both deployment workspaces with `NODE_ENV=production` and `npm ci --include=dev`. Format, lint, types, build, 67 automated tests, three fixture evaluation topics and the built frontend preview passed. `npm audit` reported zero vulnerabilities. The production API tests include MongoDB readiness, CORS and persistence across a server restart.
+
+Provider checks reported BLOCKED for Gemini text and speech and YouTube search because their configuration was absent. Follow the live checks in the [deployment guide](deployment.md#verify-the-deployment) after configuring the hosts.
 
 ## Still to verify externally
 

@@ -6,5 +6,5 @@ coverage
 test-results
 playwright-report
 package-lock.json
-*prompt.md
+text_to_learn_codex_master_prompt.md
 artifacts

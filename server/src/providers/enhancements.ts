@@ -9,7 +9,8 @@ import {
 } from '@text-to-learn/contracts';
 import type { Config } from '../config.js';
 import { GenerationFailure } from './generation.js';
-import { MAX_AUDIO_BYTES } from './audio.js';
+import { hasWavHeader, MAX_AUDIO_BYTES } from './audio.js';
+import { geminiOptions, geminiSchema, providerStatus } from './gemini.js';
 
 export interface EnhancementProvider {
   model(kind: EnhancementKind): string;
@@ -32,17 +33,36 @@ const unavailable = () =>
   );
 function safeFailure(error: unknown, signal: AbortSignal): never {
   if (error instanceof GenerationFailure) throw error;
-  const status = typeof error === 'object' && error && 'status' in error ? Number(error.status) : 0;
+  if (signal.aborted) {
+    throw new GenerationFailure(
+      'PROVIDER_TIMEOUT',
+      'This enhancement took too long. Please retry.',
+    );
+  }
+  const status = providerStatus(error);
+  if (status === 429) {
+    throw new GenerationFailure(
+      'PROVIDER_RATE_LIMITED',
+      'This service is busy. Please retry shortly.',
+    );
+  }
+  if (status === 400 || status === 401 || status === 403 || status === 404) {
+    throw new GenerationFailure(
+      'PROVIDER_CONFIG_ERROR',
+      'This enhancement is unavailable with the current provider settings. Please try again later.',
+      false,
+    );
+  }
   throw new GenerationFailure(
-    signal.aborted ? 'PROVIDER_TIMEOUT' : 'PROVIDER_FAILED',
-    signal.aborted
-      ? 'This enhancement took too long. Please retry.'
-      : 'This enhancement could not finish. Please retry.',
-    ![400, 401, 403].includes(status),
+    'PROVIDER_FAILED',
+    'This enhancement could not finish. Please retry.',
   );
 }
 const searchResult = z.object({
   items: z.array(z.object({ id: z.object({ videoId: z.string() }) })).max(50),
+});
+const youtubeError = z.object({
+  error: z.object({ errors: z.array(z.object({ reason: z.string() })) }),
 });
 const detailResult = z.object({
   items: z
@@ -83,9 +103,8 @@ export class GoogleEnhancementProvider implements EnhancementProvider {
     private fetcher: typeof fetch = fetch,
   ) {
     this.voice = config.GEMINI_TTS_VOICE;
-    this.client = config.GEMINI_API_KEY?.trim()
-      ? new GoogleGenAI({ apiKey: config.GEMINI_API_KEY })
-      : null;
+    const key = config.GEMINI_API_KEY?.trim();
+    this.client = key ? new GoogleGenAI({ apiKey: key }) : null;
   }
   model(kind: EnhancementKind) {
     return kind === 'videos'
@@ -104,26 +123,53 @@ export class GoogleEnhancementProvider implements EnhancementProvider {
     signal: AbortSignal,
   ) {
     const url = new URL(`https://www.googleapis.com/youtube/v3/${endpoint}`);
-    url.search = new URLSearchParams({ ...params, key: this.config.YOUTUBE_API_KEY! }).toString();
-    const response = await this.fetcher(url, {
-      signal: AbortSignal.any([signal, AbortSignal.timeout(15_000)]),
-    });
-    if (!response.ok)
-      throw new GenerationFailure(
-        'VIDEO_SEARCH_FAILED',
-        'Video search is unavailable. Please retry later.',
-        response.status >= 500 || response.status === 429,
-      );
-    const text = await response.text();
-    if (text.length > 100_000)
-      throw new GenerationFailure('INVALID_OUTPUT', 'Video search returned an invalid response.');
-    return JSON.parse(text) as unknown;
+    url.search = new URLSearchParams({
+      ...params,
+      key: this.config.YOUTUBE_API_KEY!.trim(),
+    }).toString();
+    const requestSignal = AbortSignal.any([signal, AbortSignal.timeout(15_000)]);
+    try {
+      const response = await this.fetcher(url, { signal: requestSignal });
+      if (!response.ok) {
+        if (response.status === 403) {
+          const error = youtubeError.safeParse(await response.json().catch(() => null));
+          if (
+            error.success &&
+            error.data.error.errors.some(({ reason }) => reason === 'quotaExceeded')
+          ) {
+            throw new GenerationFailure(
+              'VIDEO_QUOTA_EXCEEDED',
+              'Video search has reached its YouTube quota. Please try again later.',
+              false,
+            );
+          }
+        }
+        throw new GenerationFailure(
+          'VIDEO_SEARCH_FAILED',
+          'Video search is unavailable. Please retry later.',
+          response.status >= 500 || response.status === 429,
+        );
+      }
+      const text = await response.text();
+      if (text.length > 100_000)
+        throw new GenerationFailure('INVALID_OUTPUT', 'Video search returned an invalid response.');
+      return JSON.parse(text) as unknown;
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        throw new GenerationFailure('INVALID_OUTPUT', 'Video search returned an invalid response.');
+      }
+      safeFailure(error, requestSignal);
+    }
   }
   async videos(queries: string[], signal: AbortSignal) {
     if (!this.available('videos')) throw unavailable();
     try {
       const ids = new Set<string>();
-      for (const query of queries.slice(0, 3)) {
+      const distinctQueries = new Set(
+        queries.slice(0, 3).map((query) => query.trim().slice(0, 240)),
+      );
+      for (const query of distinctQueries) {
+        if (!query) continue;
         const result = searchResult.parse(
           await this.youtube(
             'search',
@@ -134,7 +180,7 @@ export class GoogleEnhancementProvider implements EnhancementProvider {
               videoSyndicated: 'true',
               safeSearch: 'moderate',
               maxResults: '3',
-              q: query.slice(0, 240),
+              q: query,
             },
             signal,
           ),
@@ -150,32 +196,37 @@ export class GoogleEnhancementProvider implements EnhancementProvider {
           signal,
         ),
       );
-      return result.items
-        .filter(
-          (item) =>
-            ids.has(item.id) &&
-            item.status.embeddable &&
-            item.status.privacyStatus === 'public' &&
-            (!item.status.uploadStatus || item.status.uploadStatus === 'processed') &&
-            item.snippet.liveBroadcastContent !== 'live' &&
-            item.contentDetails.contentRating?.ytRating !== 'ytAgeRestricted' &&
-            !item.contentDetails.regionRestriction,
+      const eligible = new Map<string, Video>();
+      for (const item of result.items) {
+        if (
+          !item.status.embeddable ||
+          item.status.privacyStatus !== 'public' ||
+          (item.status.uploadStatus && item.status.uploadStatus !== 'processed') ||
+          (item.snippet.liveBroadcastContent && item.snippet.liveBroadcastContent !== 'none') ||
+          item.contentDetails.contentRating?.ytRating === 'ytAgeRestricted' ||
+          item.contentDetails.regionRestriction
         )
-        .slice(0, 3)
-        .map((item) =>
-          videoSchema.parse({
-            id: item.id,
-            title: item.snippet.title,
-            channel: item.snippet.channelTitle,
-          }),
-        );
+          continue;
+        const video = videoSchema.safeParse({
+          id: item.id,
+          title: item.snippet.title,
+          channel: item.snippet.channelTitle,
+        });
+        if (video.success) eligible.set(item.id, video.data);
+      }
+      // videos.list can return its details in a different order from search.list.
+      return Array.from(ids)
+        .flatMap((id) => eligible.get(id) ?? [])
+        .slice(0, 3);
     } catch (error) {
       safeFailure(error, signal);
     }
   }
   async transcript(lesson: Lesson, model: string, signal: AbortSignal) {
     if (!this.client) throw unavailable();
+    const options = geminiOptions(signal, 45_000);
     try {
+      options.signal.throwIfAborted();
       const response = await this.client.interactions.create(
         {
           model,
@@ -184,21 +235,27 @@ export class GoogleEnhancementProvider implements EnhancementProvider {
           response_format: {
             type: 'text',
             mime_type: 'application/json',
-            schema: z.toJSONSchema(transcriptDraftSchema),
+            schema: geminiSchema(transcriptDraftSchema),
           },
         },
-        { timeout_ms: 45_000, maxRetries: 0, signal },
+        options,
       );
+      options.signal.throwIfAborted();
       if (typeof response.output_text !== 'string' || response.output_text.length > 30_000)
         throw new GenerationFailure('INVALID_OUTPUT', 'The explanation did not pass validation.');
       return JSON.parse(response.output_text) as unknown;
     } catch (error) {
-      safeFailure(error, signal);
+      if (error instanceof SyntaxError) {
+        throw new GenerationFailure('INVALID_OUTPUT', 'The explanation did not pass validation.');
+      }
+      safeFailure(error, options.signal);
     }
   }
   async speech(text: string, model: string, voice: string, signal: AbortSignal) {
     if (!this.client) throw unavailable();
+    const options = geminiOptions(signal, 60_000);
     try {
+      options.signal.throwIfAborted();
       const response = await this.client.interactions.create(
         {
           model,
@@ -224,23 +281,36 @@ export class GoogleEnhancementProvider implements EnhancementProvider {
           response_format: { type: 'audio', mime_type: 'audio/wav', sample_rate: 24000 },
           generation_config: { speech_config: [{ voice }] },
         },
-        { timeout_ms: 60_000, maxRetries: 0, signal },
+        options,
       );
+      options.signal.throwIfAborted();
       const output = response.output_audio;
       if (
-        !output?.data ||
+        typeof output?.data !== 'string' ||
+        !output.data ||
         output.data.length > Math.ceil(MAX_AUDIO_BYTES / 3) * 4 ||
         !/^[A-Za-z0-9+/]*={0,2}$/.test(output.data) ||
         output.data.length % 4
       )
         throw new GenerationFailure('INVALID_AUDIO', 'The speech service returned invalid audio.');
+      const data = Buffer.from(output.data, 'base64');
+      const mimeType = output.mime_type ?? (hasWavHeader(data) ? 'audio/wav' : '');
+      if (
+        mimeType.toLowerCase().split(';')[0]?.trim() === 'audio/l16' &&
+        output.channels !== undefined &&
+        output.channels !== 1
+      )
+        throw new GenerationFailure(
+          'INVALID_AUDIO',
+          'The speech service returned unsupported audio.',
+        );
       return {
-        data: Buffer.from(output.data, 'base64'),
-        mimeType: output.mime_type ?? '',
+        data,
+        mimeType,
         ...(output.sample_rate ? { sampleRate: output.sample_rate } : {}),
       };
     } catch (error) {
-      safeFailure(error, signal);
+      safeFailure(error, options.signal);
     }
   }
 }

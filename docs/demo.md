@@ -57,7 +57,7 @@ If a new request is still running, show its saved status and switch to the previ
 - Built a React/TypeScript learning application with an Express API, Auth0 access-token validation and ownership checks across saved courses, lessons, media and progress.
 - Implemented Gemini course and lesson generation with shared Zod validation, MongoDB-backed jobs, bounded retries, expiring leases and cached reopening.
 - Added YouTube search, Hinglish transcripts, validated WAV audio in GridFS, lesson PDF export and idempotent completion updates.
-- Verified failure and persistence paths with 61 automated tests, 24 desktop/mobile browser journeys, accessibility scans and long PDF coverage; configured GitHub Actions and Vercel/Render deployment.
+- Verified failure and persistence paths with 67 automated tests, 28 desktop/mobile browser journeys, accessibility scans and long PDF coverage. Configured GitHub Actions and the Vercel and Render build settings.
 
 These describe implemented work and automated checks. Do not add production usage, live quality scores, deployment URLs or performance improvements without measuring them.
 

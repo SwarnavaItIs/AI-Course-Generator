@@ -2,6 +2,7 @@ import 'dotenv/config';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { GeminiAccessProbes, probeYouTube } from '../providers/access-probes.js';
+import { supportedVoiceSchema } from '../config.js';
 
 type Probe = {
   provider: string;
@@ -34,7 +35,7 @@ await check('Gemini text', ['GEMINI_API_KEY', 'GEMINI_TEXT_MODEL'], () =>
 await check('Gemini TTS', ['GEMINI_API_KEY', 'GEMINI_TTS_MODEL'], () =>
   new GeminiAccessProbes(process.env.GEMINI_API_KEY!).speech(
     process.env.GEMINI_TTS_MODEL!,
-    process.env.GEMINI_TTS_VOICE || 'Kore',
+    supportedVoiceSchema.parse(process.env.GEMINI_TTS_VOICE),
   ),
 );
 await check('YouTube search', ['YOUTUBE_API_KEY'], () =>

@@ -3,9 +3,24 @@ import { Link } from 'react-router';
 import { lazy, Suspense, useState } from 'react';
 import type { CourseSummary, Lesson, Mcq, GenerationInfo } from '@text-to-learn/contracts';
 import { RequestError } from '../api';
-const HighlightedCode = lazy(() =>
-  import('./code').then((module) => ({ default: module.HighlightedCode })),
-);
+
+function PlainCode({ code }: { code: string }) {
+  return (
+    <pre>
+      <code>{code}</code>
+    </pre>
+  );
+}
+
+const HighlightedCode = lazy(async () => {
+  try {
+    const module = await import('./code');
+    return { default: module.HighlightedCode };
+  } catch {
+    // An old tab may request a chunk that was removed by a new deployment.
+    return { default: PlainCode };
+  }
+});
 
 export function GenerationPanel({
   state,
@@ -213,13 +228,7 @@ export function LessonContent({ lesson }: { lesson: Lesson }) {
                   <span>{block.language}</span>
                   <span>Example</span>
                 </div>
-                <Suspense
-                  fallback={
-                    <pre>
-                      <code>{block.code}</code>
-                    </pre>
-                  }
-                >
+                <Suspense fallback={<PlainCode code={block.code} />}>
                   <HighlightedCode language={block.language} code={block.code} />
                 </Suspense>
               </div>

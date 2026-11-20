@@ -6,7 +6,7 @@ import {
   idSchema,
 } from '@text-to-learn/contracts';
 import { ownerFrom } from '../auth.js';
-import { ApiError } from '../errors.js';
+import { ApiError, parseInput } from '../errors.js';
 import type { EnhancementProvider } from '../providers/enhancements.js';
 import type { AudioStorage } from '../storage/audio.js';
 import { getEnhancements, ownedAudio, requestEnhancement } from '../services/enhancements.js';
@@ -15,8 +15,8 @@ import { setCompletion } from '../services/courses.js';
 export function createEnhancementsRouter(provider: EnhancementProvider, storage: AudioStorage) {
   const router = Router();
   const ids = (params: Record<string, string | string[]>) => ({
-    courseId: idSchema.parse(params.courseId),
-    lessonId: idSchema.parse(params.lessonId),
+    courseId: parseInput(idSchema, params.courseId),
+    lessonId: parseInput(idSchema, params.lessonId),
   });
   router.get('/:courseId/lessons/:lessonId/enhancements', async (request, response) => {
     const { courseId, lessonId } = ids(request.params);
@@ -26,8 +26,8 @@ export function createEnhancementsRouter(provider: EnhancementProvider, storage:
   });
   router.post('/:courseId/lessons/:lessonId/enhancements/:kind', async (request, response) => {
     const { courseId, lessonId } = ids(request.params),
-      kind = enhancementKindSchema.parse(request.params.kind);
-    const input = generateLessonRequestSchema.parse(request.body);
+      kind = parseInput(enhancementKindSchema, request.params.kind);
+    const input = parseInput(generateLessonRequestSchema, request.body);
     const enhancements = await requestEnhancement(
       provider,
       ownerFrom(request),
@@ -40,7 +40,7 @@ export function createEnhancementsRouter(provider: EnhancementProvider, storage:
   });
   router.post('/:courseId/lessons/:lessonId/completion', async (request, response) => {
     const { courseId, lessonId } = ids(request.params),
-      { completed } = completionRequestSchema.parse(request.body);
+      { completed } = parseInput(completionRequestSchema, request.body);
     response.json({
       course: await setCompletion(ownerFrom(request), courseId, lessonId, completed),
     });
@@ -51,7 +51,7 @@ export function createEnhancementsRouter(provider: EnhancementProvider, storage:
       ownerFrom(request),
       courseId,
       lessonId,
-      idSchema.parse(request.params.assetId),
+      parseInput(idSchema, request.params.assetId),
     );
     let start = 0,
       end = asset.bytes - 1;
@@ -71,18 +71,33 @@ export function createEnhancementsRouter(provider: EnhancementProvider, storage:
         response.status(416).end();
         return;
       }
-      response.status(206).setHeader('Content-Range', `bytes ${start}-${end}/${asset.bytes}`);
     }
+    const unavailable = () =>
+      new ApiError(503, 'AUDIO_UNAVAILABLE', 'Audio could not be loaded. Please retry.');
+    let stream: ReturnType<AudioStorage['read']>;
+    try {
+      stream = storage.read(asset.fileId, start, end + 1);
+    } catch {
+      throw unavailable();
+    }
+    if (request.headers.range)
+      response.status(206).setHeader('Content-Range', `bytes ${start}-${end}/${asset.bytes}`);
     response.setHeader('Content-Type', asset.mimeType);
     response.setHeader('Content-Length', end - start + 1);
     response.setHeader('Accept-Ranges', 'bytes');
     response.setHeader('Content-Disposition', `inline; filename="${asset._id}.wav"`);
-    const stream = storage.read(asset.fileId, start, end + 1);
     stream.once('error', () => {
       if (response.headersSent) response.destroy();
       else {
-        response.removeHeader('Content-Length');
-        next(new ApiError(503, 'AUDIO_UNAVAILABLE', 'Audio could not be loaded. Please retry.'));
+        for (const header of [
+          'Content-Type',
+          'Content-Length',
+          'Content-Range',
+          'Accept-Ranges',
+          'Content-Disposition',
+        ])
+          response.removeHeader(header);
+        next(unavailable());
       }
     });
     response.once('close', () => stream.destroy());

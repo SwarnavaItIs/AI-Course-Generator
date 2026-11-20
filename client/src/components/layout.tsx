@@ -61,6 +61,14 @@ export function Layout({ children }: { children: ReactNode }) {
       .login(location.pathname.startsWith('/sample') ? '/library' : location.pathname)
       .catch(() => setAuthError('Sign-in couldn’t be started. Please try again.'));
   };
+  const signOut = () => {
+    setAuthError(null);
+    void session.logout().catch(() => {
+      setOpen(false);
+      menuButton.current?.focus();
+      setAuthError('Sign-out couldn’t be completed. Please try again.');
+    });
+  };
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">
@@ -136,7 +144,7 @@ export function Layout({ children }: { children: ReactNode }) {
             </span>
           </div>
           {session.isAuthenticated && (
-            <button className="icon-button" aria-label="Sign out" onClick={session.logout}>
+            <button className="icon-button" aria-label="Sign out" onClick={signOut}>
               <LogOut size={18} />
             </button>
           )}

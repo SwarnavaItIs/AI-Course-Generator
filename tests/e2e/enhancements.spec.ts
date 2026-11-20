@@ -126,6 +126,30 @@ test('failed explanation leaves quiz, videos, progress and PDF available; retry 
   await page.getByRole('button', { name: 'Explain in Hinglish' }).click();
   await expect(page.locator('.hinglish-transcript')).toBeVisible();
 });
+test('a video refresh does not cancel a pending progress update', async ({ page }) => {
+  await savedSample(page, 'Concurrent lesson tools');
+  const progressPath = '**/lessons/*/completion';
+  let releaseProgress!: () => void;
+  const progressPending = new Promise<void>((resolve) => {
+    releaseProgress = resolve;
+  });
+  await page.route(progressPath, async (route) => {
+    await progressPending;
+    await route.continue();
+  });
+
+  const progressRequest = page.waitForRequest((request) => request.url().endsWith('/completion'));
+  await page.getByRole('button', { name: 'Mark lesson complete' }).click();
+  await progressRequest;
+  try {
+    await page.getByRole('button', { name: 'Find videos' }).click();
+    await expect(page.getByRole('heading', { name: 'Fixture learning video' })).toBeVisible();
+  } finally {
+    releaseProgress();
+  }
+  await expect(page.getByRole('button', { name: 'Mark as incomplete' })).toBeVisible();
+  await expect(page.getByText('1 of 9 lessons completed', { exact: false })).toBeVisible();
+});
 test('long PDF has page-sized captures, every source character, readable wrapped code and final answers', async ({
   page,
 }, testInfo) => {

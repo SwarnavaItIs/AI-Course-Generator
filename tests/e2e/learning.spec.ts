@@ -50,6 +50,20 @@ test('public sample supports deep links, quiz feedback and accessible mobile nav
   expect(errors).toEqual([]);
 });
 
+test('a missing highlighting module leaves code and the quiz readable', async ({ page }) => {
+  const codeModule = '**/src/components/code.tsx*';
+  const moduleFailed = page.waitForEvent('requestfailed', (request) =>
+    new URL(request.url()).pathname.endsWith('/src/components/code.tsx'),
+  );
+  await page.route(codeModule, (route) => route.abort());
+  await page.goto('/sample');
+  await page.getByRole('link', { name: 'Start learning' }).click();
+  await moduleFailed;
+  await expect(page.locator('.code-block pre code').first()).toContainText('<!doctype html>');
+  await page.getByRole('radio', { name: 'The web browser', exact: true }).check();
+  await expect(page.getByRole('status').filter({ hasText: 'That’s right.' })).toBeVisible();
+});
+
 test('signed-in library saves, refreshes, navigates and deletes persistent courses', async ({
   page,
 }, testInfo) => {
@@ -93,6 +107,13 @@ test('signed-in library saves, refreshes, navigates and deletes persistent cours
     page.getByRole('heading', { name: `My ${testInfo.project.name} learning path` }),
   ).toBeVisible();
   await page.getByRole('button', { name: 'Delete this course' }).click();
+  await page.route(courseUrl.replace('/courses/', '/api/courses/'), (route) =>
+    route.fulfill({ status: 200, contentType: 'text/html', body: '<html>SPA fallback</html>' }),
+  );
+  await page.getByRole('button', { name: 'Delete course', exact: true }).click();
+  await expect(page.getByRole('dialog').getByRole('alert')).toContainText('unexpected response');
+  await expect(page).toHaveURL(courseUrl);
+  await page.unroute(courseUrl.replace('/courses/', '/api/courses/'));
   await page.getByRole('button', { name: 'Delete course', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Your next chapter starts here.' })).toBeVisible();
   if (testInfo.project.name === 'mobile')
@@ -126,4 +147,13 @@ test('library failures offer retry and loading state resolves', async ({ page })
   await page.getByRole('button', { name: 'Try again', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Your next chapter starts here.' })).toBeVisible();
   await expect(page.getByRole('status')).toHaveCount(0);
+
+  await page.route('**/api/courses', (route) =>
+    route.fulfill({ status: 200, contentType: 'text/html', body: '<html>SPA fallback</html>' }),
+  );
+  await page.reload();
+  await expect(page.getByRole('alert')).toContainText('unexpected response');
+  await page.unroute('**/api/courses');
+  await page.getByRole('button', { name: 'Try again', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Your next chapter starts here.' })).toBeVisible();
 });

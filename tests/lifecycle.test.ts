@@ -83,6 +83,7 @@ it('exits safely after a connected standalone database fails the transaction-cap
       ]),
     ).toBe(1);
     expect(process.errors()).toContain('Server startup failed.');
+    expect(process.errors()).toContain('MongoDB must use a replica set or sharded cluster');
     expect(process.errors()).not.toContain(mongo.getUri());
     expect(process.output()).not.toContain('server_started');
   } finally {
@@ -107,6 +108,7 @@ it('fails an occupied-port bind without starting workers or logging false readin
       ]),
     ).toBe(1);
     expect(process.errors()).toContain('Server startup failed.');
+    expect(process.errors()).toContain('already in use');
     expect(process.output()).not.toContain('server_started');
   } finally {
     if (process.child.exitCode === null) await stopped(process);

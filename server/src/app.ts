@@ -3,12 +3,13 @@ import express, { type ErrorRequestHandler, type RequestHandler } from 'express'
 import cors from 'cors';
 import helmet from 'helmet';
 import { rateLimit, type Store } from 'express-rate-limit';
+import { UnauthorizedError } from 'express-oauth2-jwt-bearer';
 import { ZodError } from 'zod';
 import mongoose from 'mongoose';
 import { idSchema, sampleCourse, sampleLessons } from '@text-to-learn/contracts';
 import type { Config } from './config.js';
 import { createAuth, ownerFrom } from './auth.js';
-import { ApiError } from './errors.js';
+import { ApiError, parseInput } from './errors.js';
 import { createCoursesRouter } from './routes/courses.js';
 import { GeminiGenerationProvider, type GenerationProvider } from './providers/generation.js';
 import { GoogleEnhancementProvider, type EnhancementProvider } from './providers/enhancements.js';
@@ -49,17 +50,19 @@ export function createApp(
         'Content-Length',
         'Content-Range',
         'Content-Disposition',
+        'RateLimit',
+        'RateLimit-Policy',
+        'Retry-After',
       ],
       maxAge: 600,
     }),
   );
-  app.use(express.json({ limit: '16kb', strict: true }));
   app.get('/health', (_request, response) => response.json({ status: 'ok' }));
   app.get('/ready', async (_request, response) => {
     try {
       if (mongoose.connection.readyState !== 1 || !mongoose.connection.db)
         throw new Error('Not connected');
-      await mongoose.connection.db.admin().ping();
+      await mongoose.connection.db.admin().ping({ timeoutMS: 2500 });
       response.json({ status: 'ready' });
     } catch {
       response.status(503).json({ status: 'not_ready' });
@@ -77,17 +80,26 @@ export function createApp(
         next(new ApiError(429, 'RATE_LIMITED', 'Too many requests. Please try again shortly.')),
     }),
   );
+  app.use('/api', express.json({ limit: '16kb', strict: true }));
   app.get('/api/sample', (_request, response) => response.json({ course: sampleCourse }));
   app.get('/api/sample/lessons/:lessonId', (request, response) => {
-    const id = idSchema.parse(request.params.lessonId);
+    const id = parseInput(idSchema, request.params.lessonId);
     const lesson = sampleLessons.find((item) => item.id === id);
     if (!lesson) throw new ApiError(404, 'NOT_FOUND', 'This sample lesson could not be found.');
     response.json({ lesson });
   });
+  app.use('/api', (request, response, next) => {
+    response.setHeader('Cache-Control', 'no-store');
+    if (!/^Bearer [^\s]+$/i.test(request.get('Authorization') ?? '')) {
+      return next(
+        new ApiError(401, 'UNAUTHENTICATED', 'Sign in with a valid access token to continue.'),
+      );
+    }
+    next();
+  });
   app.use('/api', dependencies.authenticate ?? createAuth(config));
   app.use('/api', (request, response, next) => {
     ownerFrom(request);
-    response.setHeader('Cache-Control', 'no-store');
     if (mongoose.connection.readyState !== 1)
       return next(
         new ApiError(
@@ -113,14 +125,27 @@ export function createApp(
     next(new ApiError(404, 'NOT_FOUND', 'This endpoint could not be found.')),
   );
   const errorHandler: ErrorRequestHandler = (error: unknown, _request, response, _next) => {
+    if (response.headersSent) {
+      response.destroy();
+      return;
+    }
     let status = 500,
       code = 'INTERNAL_ERROR',
       message = 'Something went wrong. Please try again.';
     if (error instanceof ApiError) ({ status, code, message } = error);
-    else if (error instanceof ZodError) {
-      status = 400;
-      code = 'INVALID_INPUT';
-      message = 'Check your input and try again.';
+    else if (error instanceof UnauthorizedError) {
+      status = 401;
+      code = 'UNAUTHENTICATED';
+      message = 'Sign in with a valid access token to continue.';
+    } else if (
+      error instanceof mongoose.mongo.MongoNetworkError ||
+      error instanceof mongoose.mongo.MongoServerSelectionError ||
+      error instanceof mongoose.mongo.MongoNotConnectedError ||
+      error instanceof mongoose.mongo.MongoOperationTimeoutError
+    ) {
+      status = 503;
+      code = 'UNAVAILABLE';
+      message = 'Your library is temporarily unavailable. Please try again.';
     } else if (typeof error === 'object' && error !== null && 'status' in error) {
       const errorStatus = Number(error.status);
       if (errorStatus === 401 || errorStatus === 403) {
@@ -135,11 +160,19 @@ export function createApp(
         status = 413;
         code = 'INPUT_TOO_LARGE';
         message = 'This request is too large.';
+      } else if (errorStatus === 415) {
+        status = 415;
+        code = 'UNSUPPORTED_MEDIA_TYPE';
+        message = 'Send JSON with UTF-8 encoding.';
       }
     }
     if (status === 500)
       console.error(
-        JSON.stringify({ event: 'request_failed', requestId: response.locals.requestId, code }),
+        JSON.stringify({
+          event: error instanceof ZodError ? 'response_validation_failed' : 'request_failed',
+          requestId: response.locals.requestId,
+          code,
+        }),
       );
     if (status === 401) response.setHeader('WWW-Authenticate', 'Bearer');
     response

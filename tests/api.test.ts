@@ -79,6 +79,12 @@ describe('production API with signed fixture JWTs and real isolated MongoDB', ()
       (await request(harness.app).get('/api/courses').auth(unsupported, { type: 'bearer' })).status,
     ).toBe(401);
   });
+  it('requires the Bearer header even when a valid access token is supplied in the query', async () => {
+    const response = await request(harness.app).get('/api/courses').query({ access_token: tokenA });
+    expect(response.status).toBe(401);
+    expect(response.headers['cache-control']).toBe('no-store');
+    expect(response.body.error.code).toBe('UNAUTHENTICATED');
+  });
   it('creates validated courses and persists lesson identity/content across reconnects', async () => {
     const course = await save();
     expect(course.title).toBe('My learning path');
@@ -136,6 +142,22 @@ describe('production API with signed fixture JWTs and real isolated MongoDB', ()
     ).toBe(404);
     expect(await LessonModel.countDocuments({ courseId: course.id })).toBe(9);
   });
+  it('reports invalid stored content as a safe server error', async () => {
+    const log = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    const course = await save();
+    const lessonId = course.modules[0]!.lessons[0]!.id;
+    await LessonModel.updateOne({ _id: lessonId }, { $set: { content: null } });
+    const response = await request(harness.app)
+      .get(`/api/courses/${course.id}/lessons/${lessonId}`)
+      .auth(tokenA, { type: 'bearer' });
+    expect(response.status).toBe(500);
+    expect(response.body.error).toEqual({
+      code: 'INTERNAL_ERROR',
+      message: 'Something went wrong. Please try again.',
+      requestId: response.headers['x-request-id'],
+    });
+    expect(log).toHaveBeenCalledWith(expect.stringContaining('response_validation_failed'));
+  });
   it('rejects invalid input, ownership injection, malformed JSON, oversized requests, and unapproved origins', async () => {
     for (const body of [
       { templateId: 'unknown' },
@@ -169,6 +191,12 @@ describe('production API with signed fixture JWTs and real isolated MongoDB', ()
           .send({ title: 'a'.repeat(20_000) })
       ).status,
     ).toBe(413);
+    const unsupported = await request(harness.app)
+      .post('/api/courses')
+      .set('Content-Type', 'application/json; charset=iso-8859-1')
+      .send('{}');
+    expect(unsupported.status).toBe(415);
+    expect(unsupported.body.error.code).toBe('UNSUPPORTED_MEDIA_TYPE');
     expect(
       (await request(harness.app).get('/api/courses').set('Origin', 'https://unknown.invalid'))
         .status,

@@ -24,6 +24,9 @@ describe('startup configuration', () => {
     expect(() => parseConfig({ ...config, CLIENT_ORIGINS: 'http://localhost:5173/path' })).toThrow(
       'CLIENT_ORIGINS',
     );
+    expect(() => parseConfig({ ...config, CLIENT_ORIGINS: 'malformed-setting' })).toThrow(
+      'Invalid server configuration: CLIENT_ORIGINS',
+    );
     expect(() => parseConfig({ ...config, NODE_ENV: 'production' })).toThrow('CLIENT_ORIGINS');
     expect(
       parseConfig({ ...config, NODE_ENV: 'production', CLIENT_ORIGINS: 'https://app.example.com' })

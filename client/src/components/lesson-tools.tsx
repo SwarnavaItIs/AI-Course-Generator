@@ -86,11 +86,15 @@ export function LessonTools({
   const [exportBusy, setExportBusy] = useState(false),
     [exportStatus, setExportStatus] = useState(''),
     [exportError, setExportError] = useState<unknown>(null);
-  const controllerRef = useRef<AbortController | null>(null);
+  const actions = useRef<AbortController | null>(null);
+  useEffect(() => {
+    const controller = new AbortController();
+    actions.current = controller;
+    return () => controller.abort();
+  }, [path]);
   useEffect(() => {
     if (preview) return;
     const controller = new AbortController();
-    controllerRef.current = controller;
     let timer: ReturnType<typeof setTimeout> | undefined;
     const until = Date.now() + 300_000;
     const load = async () => {
@@ -119,19 +123,22 @@ export function LessonTools({
     };
   }, [api, path, preview, reload]);
   const request = async (kind: EnhancementKind, retry = false) => {
+    const signal = actions.current?.signal;
     setBusy((value) => ({ ...value, [kind]: true }));
     setErrors((value) => ({ ...value, [kind]: null }));
     try {
       const result = await api(`${path}/enhancements/${kind}`, enhancementsResponseSchema, {
         method: 'POST',
         body: { retry },
-        signal: controllerRef.current?.signal,
+        signal,
       });
-      setData(result.enhancements);
+      if (signal?.aborted) return;
+      setData((previous) =>
+        previous ? { ...previous, [kind]: result.enhancements[kind] } : result.enhancements,
+      );
       setReload((value) => value + 1);
     } catch (failure) {
-      if (!controllerRef.current?.signal.aborted)
-        setErrors((value) => ({ ...value, [kind]: failure }));
+      if (!signal?.aborted) setErrors((value) => ({ ...value, [kind]: failure }));
     } finally {
       setBusy((value) => ({ ...value, [kind]: false }));
     }
@@ -174,17 +181,18 @@ export function LessonTools({
   };
   const completed = course.completedLessonIds.includes(lesson.id);
   const toggleCompletion = async () => {
+    const signal = actions.current?.signal;
     setCompletionBusy(true);
     setCompletionError(null);
     try {
       const result = await api(`${path}/completion`, courseResponseSchema, {
         method: 'POST',
         body: { completed: !completed },
-        signal: controllerRef.current?.signal,
+        signal,
       });
-      onCourse(result.course);
+      if (!signal?.aborted) onCourse(result.course);
     } catch (failure) {
-      if (!controllerRef.current?.signal.aborted) setCompletionError(failure);
+      if (!signal?.aborted) setCompletionError(failure);
     } finally {
       setCompletionBusy(false);
     }

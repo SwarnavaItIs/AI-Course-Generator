@@ -1,11 +1,11 @@
 import { GoogleGenAI } from '@google/genai';
-import { z } from 'zod';
 import {
   generatedLessonContentSchema,
   outlineDraftSchema,
   type OutlineDraft,
 } from '@text-to-learn/contracts';
 import type { Config } from '../config.js';
+import { geminiOptions, geminiSchema, providerStatus } from './gemini.js';
 
 export const PROMPT_VERSION = 1;
 export const RESOURCE_CATALOGUE = [
@@ -83,9 +83,10 @@ export class GeminiGenerationProvider implements GenerationProvider {
   readonly model: string;
   private client: GoogleGenAI | null;
   constructor(config: Pick<Config, 'GEMINI_API_KEY' | 'GEMINI_TEXT_MODEL'>) {
+    const key = config.GEMINI_API_KEY?.trim();
     this.model = config.GEMINI_TEXT_MODEL?.trim() || 'unconfigured';
-    this.available = !!config.GEMINI_API_KEY?.trim() && this.model !== 'unconfigured';
-    this.client = this.available ? new GoogleGenAI({ apiKey: config.GEMINI_API_KEY }) : null;
+    this.available = Boolean(key && this.model !== 'unconfigured');
+    this.client = key && this.available ? new GoogleGenAI({ apiKey: key }) : null;
   }
   async generate(request: GenerationRequest): Promise<unknown> {
     if (!this.client)
@@ -94,8 +95,10 @@ export class GeminiGenerationProvider implements GenerationProvider {
         'Course generation is currently unavailable. Please try again later.',
         false,
       );
+    const options = geminiOptions(request.signal, 45_000);
     try {
-      const schema = z.toJSONSchema(
+      options.signal.throwIfAborted();
+      const schema = geminiSchema(
         request.kind === 'course' ? outlineDraftSchema : generatedLessonContentSchema,
       );
       const response = await this.client.interactions.create(
@@ -105,8 +108,9 @@ export class GeminiGenerationProvider implements GenerationProvider {
           input: generationPrompt(request),
           response_format: { type: 'text', mime_type: 'application/json', schema },
         },
-        { timeout_ms: 45_000, maxRetries: 0, signal: request.signal },
+        options,
       );
+      options.signal.throwIfAborted();
       if (typeof response.output_text !== 'string' || response.output_text.length > 250_000)
         throw new GenerationFailure(
           'INVALID_OUTPUT',
@@ -122,19 +126,24 @@ export class GeminiGenerationProvider implements GenerationProvider {
       }
     } catch (error) {
       if (error instanceof GenerationFailure) throw error;
-      if (request.signal.aborted)
+      if (options.signal.aborted)
         throw new GenerationFailure('PROVIDER_TIMEOUT', 'Generation took too long. Please retry.');
-      const status =
-        typeof error === 'object' && error !== null && 'status' in error ? Number(error.status) : 0;
+      const status = providerStatus(error);
       if (status === 429)
         throw new GenerationFailure(
           'PROVIDER_RATE_LIMITED',
           'The generation service is busy. Please retry shortly.',
         );
+      if (status === 400 || status === 401 || status === 403 || status === 404) {
+        throw new GenerationFailure(
+          'PROVIDER_CONFIG_ERROR',
+          'Generation is unavailable with the current provider settings. Please try again later.',
+          false,
+        );
+      }
       throw new GenerationFailure(
         'PROVIDER_FAILED',
         'The generation service could not complete this request. Please retry.',
-        status !== 400 && status !== 401 && status !== 403,
       );
     }
   }

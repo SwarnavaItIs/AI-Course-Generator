@@ -118,6 +118,10 @@ export async function submitTopic(
         'Your library is full. Delete a course before adding another.',
       );
     const id = randomUUID();
+    const title = input.topic
+      .slice(0, 120)
+      .replace(/[\uD800-\uDBFF]$/, '')
+      .trimEnd();
     await CourseModel.create(
       [
         {
@@ -125,7 +129,7 @@ export async function submitTopic(
           ownerSub,
           topic: input.topic,
           requestId: input.requestId,
-          title: input.topic.slice(0, 120),
+          title: title.length >= 3 ? title : 'New course',
           description: 'Your course outline is being prepared.',
           tags: [],
           isSample: false,

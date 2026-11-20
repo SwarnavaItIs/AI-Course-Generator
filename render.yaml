@@ -3,7 +3,7 @@ services:
     name: text-to-learn-api
     runtime: node
     plan: free
-    buildCommand: npm ci && npm run build -w @text-to-learn/contracts && npm run build -w @text-to-learn/server
+    buildCommand: npm ci --include=dev && npm run build -w @text-to-learn/contracts && npm run build -w @text-to-learn/server
     startCommand: npm run start -w @text-to-learn/server
     healthCheckPath: /ready
     envVars:

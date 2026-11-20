@@ -10,6 +10,7 @@ test-results/
 playwright-report/
 .vercel/
 artifacts/
+text_to_learn_codex_master_prompt.md
 *.tsbuildinfo
 *.log
 .DS_Store

@@ -100,6 +100,9 @@ export async function getCourse(ownerSub: string, courseId: string): Promise<Cou
           .session(session)
           .lean();
         const lessons = await LessonModel.find({ courseId })
+          .select(
+            'moduleId position title description objectives keyTopics resources generationState',
+          )
           .sort({ position: 1, _id: 1 })
           .session(session)
           .lean();

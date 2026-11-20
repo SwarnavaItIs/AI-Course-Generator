@@ -7,7 +7,14 @@ const invalid = () =>
     'The speech service returned unsupported or incomplete audio. Please retry.',
   );
 export function pcmToWav(pcm: Buffer, sampleRate: number) {
-  if (pcm.length % 2 || sampleRate < 8000 || sampleRate > 48000) throw invalid();
+  if (
+    !pcm.length ||
+    pcm.length % 2 ||
+    !Number.isInteger(sampleRate) ||
+    sampleRate < 8000 ||
+    sampleRate > 48000
+  )
+    throw invalid();
   const header = Buffer.alloc(44);
   header.write('RIFF');
   header.writeUInt32LE(36 + pcm.length, 4);
@@ -24,6 +31,9 @@ export function pcmToWav(pcm: Buffer, sampleRate: number) {
   header.writeUInt32LE(pcm.length, 40);
   return Buffer.concat([header, pcm]);
 }
+export function hasWavHeader(data: Buffer) {
+  return data.toString('ascii', 0, 4) === 'RIFF' && data.toString('ascii', 8, 12) === 'WAVE';
+}
 export function normalizeAudio(input: { data: Buffer; mimeType: string; sampleRate?: number }) {
   if (input.data.length > MAX_AUDIO_BYTES)
     throw new GenerationFailure(
@@ -32,15 +42,17 @@ export function normalizeAudio(input: { data: Buffer; mimeType: string; sampleRa
       false,
     );
   const mime = input.mimeType.toLowerCase().split(';')[0]?.trim();
-  // Only the provider's declared PCM16 mono format is wrapped. WAV is never wrapped twice.
-  const data =
-    mime === 'audio/l16' && input.sampleRate ? pcmToWav(input.data, input.sampleRate) : input.data;
+  // Gemini returns little-endian PCM16 mono for raw audio/l16.
+  let data = input.data;
+  if (mime === 'audio/l16') {
+    if (!input.sampleRate || hasWavHeader(data)) throw invalid();
+    data = pcmToWav(data, input.sampleRate);
+  }
   if (
     !['audio/wav', 'audio/x-wav', 'audio/l16'].includes(mime ?? '') ||
     data.length < 44 ||
     data.length > MAX_AUDIO_BYTES ||
-    data.toString('ascii', 0, 4) !== 'RIFF' ||
-    data.toString('ascii', 8, 12) !== 'WAVE' ||
+    !hasWavHeader(data) ||
     data.readUInt32LE(4) + 8 !== data.length
   )
     throw invalid();

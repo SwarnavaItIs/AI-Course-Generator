@@ -199,6 +199,8 @@ const jobSchema = new Schema<JobRecord>(
 );
 jobSchema.index({ status: 1, nextAttemptAt: 1, leaseUntil: 1 });
 jobSchema.index({ courseId: 1 });
+jobSchema.index({ ownerSub: 1, status: 1 });
+jobSchema.index({ ownerSub: 1, enhancementId: 1 });
 
 export const UserModel = mongoose.model<UserRecord>('User', userSchema);
 export const CourseModel = mongoose.model<CourseRecord>('Course', courseSchema);

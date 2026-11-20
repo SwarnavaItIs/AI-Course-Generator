@@ -1,5 +1,5 @@
 import { Auth0Provider, useAuth0, type AppState } from '@auth0/auth0-react';
-import { createContext, useContext, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, type ReactNode } from 'react';
 import { useNavigate } from 'react-router';
 import { safeReturnTo } from './return-path';
 
@@ -10,7 +10,7 @@ interface Session {
   name?: string;
   error?: string;
   login: (returnTo?: string) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
   getToken: () => Promise<string>;
 }
 const unavailable: Session = {
@@ -20,7 +20,7 @@ const unavailable: Session = {
   login: async () => {
     throw new Error('Sign-in is currently unavailable.');
   },
-  logout: () => {},
+  logout: async () => {},
   getToken: async () => {
     throw new Error('Sign in to open your library.');
   },
@@ -30,6 +30,16 @@ export const useSession = () => useContext(SessionContext);
 
 function AuthBridge({ children }: { children: ReactNode }) {
   const auth = useAuth0();
+  const { getAccessTokenSilently } = auth;
+  const getToken = useCallback(async () => {
+    try {
+      const token = await getAccessTokenSilently();
+      if (token) return token;
+    } catch {
+      // Auth0 error details are intended for operators, not the learner.
+    }
+    throw new Error('We couldn’t verify your session. Sign in again and retry.');
+  }, [getAccessTokenSilently]);
   return (
     <SessionContext.Provider
       value={{
@@ -41,12 +51,8 @@ function AuthBridge({ children }: { children: ReactNode }) {
         login: async (returnTo = '/library') => {
           await auth.loginWithRedirect({ appState: { returnTo: safeReturnTo(returnTo) } });
         },
-        logout: () => auth.logout({ logoutParams: { returnTo: window.location.origin } }),
-        getToken: async () => {
-          const token = await auth.getAccessTokenSilently();
-          if (!token) throw new Error('Your session has expired. Please sign in again.');
-          return token;
-        },
+        logout: async () => auth.logout({ logoutParams: { returnTo: window.location.origin } }),
+        getToken,
       }}
     >
       {children}

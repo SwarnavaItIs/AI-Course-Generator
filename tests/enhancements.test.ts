@@ -127,6 +127,22 @@ describe('owned durable lesson enhancements and progress', () => {
     );
     expect((await api(`${path}/audio/${'00000000-0000-4000-8000-000000000000'}`)).status).toBe(404);
   });
+  it('returns a retryable JSON error without WAV headers when saved audio is unavailable', async () => {
+    const { path } = await sample();
+    await generate(path, 'transcript');
+    const { audio } = await generate(path, 'audio');
+    const asset = await AudioAssetModel.findById(audio.asset!.id).lean();
+    await mongoose.connection.db!.collection('lessonAudio.files').deleteOne({
+      _id: new mongoose.mongo.ObjectId(asset!.fileId),
+    });
+    const response = await api(`${path}/audio/${audio.asset!.id}`).set('Range', 'bytes=0-43');
+    expect(response.status).toBe(503);
+    expect(response.headers['content-type']).toMatch(/^application\/json\b/);
+    expect(response.headers['content-range']).toBeUndefined();
+    expect(response.headers['content-disposition']).toBeUndefined();
+    expect(response.body.error.code).toBe('AUDIO_UNAVAILABLE');
+    expect((await api(path)).status).toBe(200);
+  });
   it('keeps invalid transcript output failed until a controlled retry and leaves the lesson/videos ready', async () => {
     const { path } = await sample();
     vi.spyOn(provider, 'transcript').mockResolvedValue({ text: 'too short' });

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 const origin = z.url().refine((value) => {
-  const url = new URL(value);
-  return ['http:', 'https:'].includes(url.protocol) && url.origin === value;
+  const url = URL.parse(value);
+  return url !== null && ['http:', 'https:'].includes(url.protocol) && url.origin === value;
 }, 'Use an HTTP(S) origin without a trailing slash or path');
 export const supportedVoiceSchema = z
   .enum(['Kore', 'Puck', 'Charon', 'Fenrir', 'Aoede', 'Zephyr', 'Orus', 'Leda'])

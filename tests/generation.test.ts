@@ -140,6 +140,16 @@ describe('durable validated generation through the owned production API', () => 
     ])
       expect((await api('/api/courses', 'post').send(body)).status).toBe(400);
   });
+  it('returns a usable pending course for a valid topic with a short leading word', async () => {
+    const topic = `JS${' '.repeat(119)}fundamentals`;
+    const requestId = randomUUID();
+    const course = await submit(topic, requestId);
+    expect(course.title).toBe('New course');
+    expect((await submit(topic, requestId)).id).toBe(course.id);
+    expect(await CourseModel.countDocuments()).toBe(1);
+    expect(await JobModel.countDocuments()).toBe(1);
+    expect((await CourseModel.findById(course.id))?.topic).toBe(topic);
+  });
   it('never publishes invalid outlines and bounds automatic/manual retries', async () => {
     vi.spyOn(provider, 'generate').mockResolvedValue({
       ...evaluationCases[0]!.outline,

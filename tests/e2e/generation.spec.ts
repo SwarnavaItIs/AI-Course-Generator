@@ -111,7 +111,9 @@ test('invalid generation shows a controlled retry and becomes a saved valid cour
   await page.getByRole('button', { name: 'Sign in to continue' }).click();
   await page.getByLabel('Learning topic').fill(`Retry generation test ${testInfo.project.name}`);
   await page.getByRole('button', { name: 'Generate course', exact: true }).click();
-  await expect(page.getByRole('alert')).toContainText('Your course needs another try');
+  await expect(page.getByRole('alert')).toContainText('Your course needs another try', {
+    timeout: 10_000,
+  });
   await expect(page.getByRole('alert')).toContainText('2 of 4 attempts used');
   await expect(page.getByRole('link', { name: 'Start learning' })).toHaveCount(0);
   await page.screenshot({

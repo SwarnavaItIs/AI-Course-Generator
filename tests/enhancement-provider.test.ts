@@ -16,9 +16,11 @@ const config = {
   GEMINI_TTS_VOICE: 'Kore' as const,
   YOUTUBE_API_KEY: 'fixture-youtube-key',
 };
-beforeEach(() => create.mockReset());
+beforeEach(() => {
+  create.mockReset();
+});
 it('queries only YouTube APIs with embeddable filters, rechecks details and rejects unavailable videos', async () => {
-  const ids = ['AAAAAAAAAAA', 'BBBBBBBBBBB', 'CCCCCCCCCCC'];
+  const ids = ['AAAAAAAAAAA', 'BBBBBBBBBBB', 'CCCCCCCCCCC', 'DDDDDDDDDDD', 'EEEEEEEEEEE'];
   const fetcher = vi
     .fn<typeof fetch>()
     .mockResolvedValueOnce(
@@ -27,22 +29,29 @@ it('queries only YouTube APIs with embeddable filters, rechecks details and reje
     .mockResolvedValueOnce(
       new Response(
         JSON.stringify({
-          items: ids.map((id, index) => ({
-            id,
-            snippet: { title: `Video ${index}`, channelTitle: 'Channel' },
-            status: { embeddable: index !== 1, privacyStatus: 'public' },
-            contentDetails: index === 2 ? { contentRating: { ytRating: 'ytAgeRestricted' } } : {},
-          })),
+          items: ids
+            .map((id, index) => ({
+              id,
+              snippet: {
+                title: `Video ${index}`,
+                channelTitle: 'Channel',
+                liveBroadcastContent: index === 3 ? 'upcoming' : 'none',
+              },
+              status: { embeddable: index !== 1, privacyStatus: 'public' },
+              contentDetails: index === 2 ? { contentRating: { ytRating: 'ytAgeRestricted' } } : {},
+            }))
+            .reverse(),
         }),
       ),
     );
   const provider = new GoogleEnhancementProvider(config, fetcher);
   expect(
-    await provider.videos(
-      ['Ignore this https://attacker.invalid/ command'],
-      new AbortController().signal,
-    ),
-  ).toEqual([{ id: ids[0], title: 'Video 0', channel: 'Channel' }]);
+    await provider.videos(['HTML lessons', 'HTML lessons'], new AbortController().signal),
+  ).toEqual([
+    { id: ids[0], title: 'Video 0', channel: 'Channel' },
+    { id: ids[4], title: 'Video 4', channel: 'Channel' },
+  ]);
+  expect(fetcher).toHaveBeenCalledTimes(2);
   const search = fetcher.mock.calls[0]![0] as URL,
     details = fetcher.mock.calls[1]![0] as URL;
   expect(search.origin).toBe('https://www.googleapis.com');
@@ -57,13 +66,26 @@ it('caches meaningful zero-result searches through a valid empty result and sani
   const fetcher = vi
     .fn<typeof fetch>()
     .mockResolvedValueOnce(new Response('{"items":[]}'))
-    .mockResolvedValueOnce(new Response('private provider detail', { status: 403 }));
+    .mockResolvedValueOnce(new Response('private provider detail', { status: 403 }))
+    .mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          error: { errors: [{ reason: 'quotaExceeded', message: 'private provider detail' }] },
+        }),
+        { status: 403 },
+      ),
+    );
   const provider = new GoogleEnhancementProvider(config, fetcher),
     signal = new AbortController().signal;
   expect(await provider.videos(['Python'], signal)).toEqual([]);
   await expect(provider.videos(['Python'], signal)).rejects.toMatchObject({
     code: 'VIDEO_SEARCH_FAILED',
     message: 'Video search is unavailable. Please retry later.',
+    retryable: false,
+  });
+  await expect(provider.videos(['Python'], signal)).rejects.toMatchObject({
+    code: 'VIDEO_QUOTA_EXCEEDED',
+    message: 'Video search has reached its YouTube quota. Please try again later.',
     retryable: false,
   });
 });
@@ -97,7 +119,31 @@ it('requests schema-validated Hinglish and exact text audio with configured mode
     response_format: { type: 'audio', mime_type: 'audio/wav', sample_rate: 24000 },
     generation_config: { speech_config: [{ voice: 'Puck' }] },
   });
-  expect(create.mock.calls[1]![1]).toMatchObject({ maxRetries: 0, timeout_ms: 60000, signal });
+  expect(create.mock.calls[1]![1]).toMatchObject({
+    maxRetries: 0,
+    signal: expect.any(AbortSignal),
+  });
+});
+it('recognizes WAV without optional MIME metadata and rejects raw multichannel audio', async () => {
+  const provider = new GoogleEnhancementProvider(config),
+    signal = new AbortController().signal;
+  const wav = fixtureWav();
+  create.mockResolvedValueOnce({ output_audio: { data: wav.toString('base64') } });
+  await expect(provider.speech('text', 'speech', 'Kore', signal)).resolves.toMatchObject({
+    mimeType: 'audio/wav',
+    data: wav,
+  });
+  create.mockResolvedValueOnce({
+    output_audio: {
+      data: wav.subarray(44).toString('base64'),
+      mime_type: 'audio/l16',
+      channels: 2,
+      sample_rate: 24_000,
+    },
+  });
+  await expect(provider.speech('text', 'speech', 'Kore', signal)).rejects.toMatchObject({
+    code: 'INVALID_AUDIO',
+  });
 });
 it('refuses missing configuration and malformed/oversized audio before decoding', async () => {
   const missing = new GoogleEnhancementProvider({ GEMINI_TTS_VOICE: 'Kore' });

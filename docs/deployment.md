@@ -14,13 +14,13 @@ Create a Gemini API key and choose explicit text and speech models available to 
 
 Connect `SwarnavaItIs/AI-Course-Generator` to your web service and select `main`.
 
-| Setting        | Value                                                                                           |
-| -------------- | ----------------------------------------------------------------------------------------------- |
-| Runtime        | Node                                                                                            |
-| Root directory | Leave blank                                                                                     |
-| Build command  | `npm ci && npm run build -w @text-to-learn/contracts && npm run build -w @text-to-learn/server` |
-| Start command  | `npm run start -w @text-to-learn/server`                                                        |
-| Health check   | `/ready`                                                                                        |
+| Setting        | Value                                                                                                         |
+| -------------- | ------------------------------------------------------------------------------------------------------------- |
+| Runtime        | Node                                                                                                          |
+| Root directory | Leave blank                                                                                                   |
+| Build command  | `npm ci --include=dev && npm run build -w @text-to-learn/contracts && npm run build -w @text-to-learn/server` |
+| Start command  | `npm run start -w @text-to-learn/server`                                                                      |
+| Health check   | `/ready`                                                                                                      |
 
 Add these environment variables in the dashboard:
 
@@ -39,7 +39,7 @@ GEMINI_TTS_VOICE=Kore
 YOUTUBE_API_KEY=<private YouTube Data API key>
 ```
 
-Render supplies `PORT`. Missing database or Auth0 settings prevent startup; missing provider settings leave the corresponding tools unavailable. Deploy the latest commit and check that `/health` and `/ready` return 200. The repository also includes `render.yaml` for Blueprint setup.
+Render supplies `PORT`. Use `--include=dev` to install the TypeScript build tools with `NODE_ENV=production`. Missing database or Auth0 settings prevent startup. Missing provider settings leave the corresponding tools unavailable. Deploy the latest commit and check that `/health` and `/ready` return 200. The repository also includes `render.yaml` for Blueprint setup.
 
 ## Vercel frontend
 
@@ -50,7 +50,7 @@ Connect the same repository to the frontend project, with `main` as the producti
 | Framework        | Vite                                                                                  |
 | Root directory   | Repository root                                                                       |
 | Node.js          | 24.x                                                                                  |
-| Install command  | `npm ci`                                                                              |
+| Install command  | `npm ci --include=dev`                                                                |
 | Build command    | `npm run build -w @text-to-learn/contracts && npm run build -w @text-to-learn/client` |
 | Output directory | `client/dist`                                                                         |
 
@@ -62,6 +62,8 @@ VITE_AUTH0_CLIENT_ID=<public SPA client ID>
 VITE_AUTH0_AUDIENCE=<same API identifier>
 VITE_API_URL=<Render HTTPS origin, no /api or trailing slash>
 ```
+
+Set `MONGOMS_DISABLE_POSTINSTALL=1` on Vercel to skip downloading the test database during the install. Browser and integration tests install their own test binaries in CI.
 
 Deploy again after changing frontend variables. `vercel.json` supplies the SPA rewrite and asset caching. Never put backend keys or an Auth0 client secret in a `VITE_` variable.
 

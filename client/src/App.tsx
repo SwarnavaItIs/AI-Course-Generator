@@ -30,7 +30,10 @@ function Protected({ children }: { children: ReactNode }) {
           <button
             className="button"
             onClick={() => {
-              void session.login(location.pathname).catch((failure: unknown) => setError(failure));
+              setError(null);
+              void session.login(location.pathname).catch(() => {
+                setError(new Error('Sign-in couldn’t be started. Please try again.'));
+              });
             }}
           >
             Sign in to continue <ArrowRight size={17} />
